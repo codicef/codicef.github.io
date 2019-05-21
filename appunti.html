@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+<!-- 2019-05-21 mar 10:39 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Francesco">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title"></h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Diagrammi</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Diagramma casi uso</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Diagramma che esprime un comportamento desiderato o offerto
+Sono modellati i requisiti funzionali
+</p>
+<dl class="org-dl">
+<dt> attore </dt><dd>chi ha a che fare con il sistema
+e' il ruolo assunto da chi interagisce con il sistema 
+</dd>
+<dt> caso uso </dt><dd>cosa attore puo' fare
+specifica sequenza di azioni incluse quelle alternative che un 
+sistema puo' eseguire interagendo con attori esterni.
+</dd>
+<dt> associazioni </dt><dd>collega attori a casi d'uso
+
+
+<figure>
+<p><img src="imgs/caseuse.png" class="img-responsive" alt="caseuse.png"> 
+</p>
+</figure>
+</dd>
+</dl>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Elementi del diagramma</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<dl class="org-dl">
+<dt> Include </dt><dd>Dipendenza tra casi d'uso, il caso incluso fa parte di quello che lo include.
+ non e' opzionale ma necessaria/obbligatoria
+ freccia verso il caso incluso <a id="include" name="include"></a> - linea tratteggiata
+<img src="imgs/include.png" class="img-responsive" alt="include.png"> 
+</dd>
+<dt> Extend </dt><dd>Dipendenza opzionale che gestisce casi particolari non standard
+ freccia verso caso che include <a id="extend" name="extend"></a> - linea tratteggiata
+<img src="imgs/extend.png" class="img-responsive" alt="extend.png"> 
+</dd>
+<dt> Generalizzazione </dt><dd>collega attore o caso d'uso a uno piu generale
+	freccia verso caso generale - freccia azzurra piena
+<img src="imgs/casi-gen.png" class="img-responsive" alt="casi-gen.png"> 
+</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Esempio</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<figure>
+<p><img src="imgs/usecasesexamples.png" class="img-responsive" alt="usecasesexamples.png">
+</p>
+</figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Diagrammi attivita'</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Diagramma che modella un comportamento(fra piu entita') come un insieme di azioni organizzate
+secondo un flusso. Il flusso e' definito' da enitita' (token) che viaggiano lungo il diagramma.
+</p>
+<dl class="org-dl">
+<dt> nodo oggetto </dt><dd>rettangoli , specificano input-output di azioni
+</dd>
+<dt> nodi azione </dt><dd>specificano unita' di comportamento (es : suonare canzone) 
+Un nodo azione e' eseguito quando sono presenti token su tutti gli archi di 
+entrata e quando sono soddisfatte tutte le precondizioni. 
+Al termine sono generati i control token
+rettandolo smussato	
+<img src="Diagrammi/azione_2019-05-05_10-27-53.png" class="img-responsive" alt="azione_2019-05-05_10-27-53.png">
+</dd>
+
+<dt> nodi controllo </dt><dd>specificano il flusso di attivita'
+<dl class="org-dl">
+<dt> nodi decisione </dt><dd>un input - vari output mutualmente esclusivi - 
+ condizioni sugli archi (rombo)
+<img src="imgs/nodo_decisione.png" class="img-responsive" alt="nodo_decisione.png"> 
+</dd>
+
+<dt> nodi fusione </dt><dd>vari input e un solo output
+<img src="Diagrammi/nodofusione_2019-05-05_10-26-59.png" class="img-responsive" alt="nodofusione_2019-05-05_10-26-59.png">
+</dd>
+
+<dt> nodi fork </dt><dd>hanno un ingresso e varie uscite - i toke in ingresso sono duplicati
+su ogni uscita.
+</dd>
+<dt> nodi join </dt><dd>hanno vari ingressi e una sola uscita - quando ci sono i token su tutti gli 
+ingressi e' prodotto il singolo token di uscita.
+<img src="Diagrammi/forkjoin_2019-05-05_10-32-01.png" class="img-responsive" alt="forkjoin_2019-05-05_10-32-01.png">
+</dd>
+
+<dt> nodo fine inizio </dt><dd>disco nero marca inizio - disco nero bordato denota la fine 
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Esempio</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<figure>
+<p><img src="imgs/attivita-esempio.png" class="img-responsive" alt="attivita-esempio.png">
+</p>
+</figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Diagrammi stato</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Descrive la sequenza di stati in cui si trova un oggetto durante il suo ciclo
+di vita e in risposta a eventi.
+</p>
+<ul class="org-ul">
+<li><b>Stato</b> : codizione o situazione nella vita di un oggetto in cui soddisfa condizione,
+esegue attivita' o aspetta un evento.
+<img src="imgs/stato1.png" class="img-responsive" alt="stato1.png">
+</li>
+<li><b>Evento</b> : la specifica di un occorrenza che ha una collocazione nel tempo e nello
+spazio.
+</li>
+<li id="<b>Transizione</b>">e' il passaggio da uno stato a un altro in risposta ad un evento.
+Ogni transizione ha:
+Origine : stato origine
+Destinazione : Stato destinazione
+Evento: trigger che attiva il passaggio di stato
+Guard : condizione che se vera permette passaggio di stato
+Action : azione che risulta dal dal cambio di stato
+Sitassi -&gt; event[guard] / action
+<img src="imgs/tx.png" class="img-responsive" alt="tx.png"> 
+</li>
+
+<li id="Azione di stato">una tx puo' anche non portare ad un cambio di stato
+<img src="imgs/stateaction.png" class="img-responsive" alt="stateaction.png">
+</li>
+
+<li id="Auto transazione"><img src="./imgs/selftx.png" class="img-responsive" alt="selftx.png"> 
+</li>
+
+<li id="Stati compositi">permettono di suddividere la complessita' del modello. Vi sara' un
+macrostato al cui interno vi sono altri stati.
+<img src="Diagrammi/stato_2019-05-05_15-03-04.png" class="img-responsive" alt="stato_2019-05-05_15-03-04.png">
+
+<dl class="org-dl">
+<dt> nodi fork </dt><dd>hanno un ingresso e varie uscite - i toke in ingresso sono duplicati
+su ogni uscita.
+</dd>
+<dt> nodi join </dt><dd>hanno vari ingressi e una sola uscita - quando ci sono i token su tutti gli 
+ingressi e' prodotto il singolo token di uscita.
+<img src="Diagrammi/forkjoin_2019-05-05_10-32-01.png" class="img-responsive" alt="forkjoin_2019-05-05_10-32-01.png">
+</dd>
+
+<dt> nodo fine inizio </dt><dd>disco nero marca inizio - disco nero bordato denota la fine 
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Esempio</h4>
+<div class="outline-text-4" id="text-1-3-1">
+
+<figure>
+<p><img src="imgs/es_stato.png" class="img-responsive" alt="es_stato.png">
+</p>
+</figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Diagramma sequenza</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Sono diagrammi che mostrano gli oggetti come lifelines che scorrono verso il basso nel tempo
+Le interazioni fra oggetti sono disegnate come freccie dalla lifeline source a quella dest.
+Sono utili per mostrare la comunicazione fra oggetti
+</p>
+
+<dl class="org-dl">
+<dt> Lifelines </dt><dd>queste linee verticali trovano al loro apice un rettangolo contenente il nome
+ dell'oggetto
+<img src="imgs/lifeline.png" class="img-responsive" alt="lifeline.png"> 
+</dd>
+
+<dt> Messaggi </dt><dd>Sono mostrati e disegnati come frecce. Possono essere completi, lost o found.
+Possono anche essere sincroni (freccia piena)
+asincroni (freccia vuota)
+messaggio ritorno asincroni (linea tratteggiata frecia vuota)
+
+<p>
+I messaggi lost e found convergono in un disco nero
+<img src="imgs/messages.png" class="img-responsive" alt="messages.png"> 
+</p>
+</dd>
+<dt> Occorrenze di esecuzione </dt><dd>Sono sottili rettangoli posti sulla linea verticale.
+Intervallo in cui l’oggetto è attivo nell’interazione (ovvero un suo metodo è in 
+esecuzione) 
+</dd>
+</dl>
+
+
+<dl class="org-dl">
+<dt> Auto-messaggi </dt><dd>possono riferisti a ricorsioni o chiamate di un metodo in self.
+<img src="imgs/self-msg.png" class="img-responsive" alt="self-msg.png"> 
+</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Diagrammi di classe</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Mostra i blocchi di costruzione di un qualsiasi sistema basato sul paradigma di programmazione o.o.
+</p>
+<dl class="org-dl">
+<dt> Classe </dt><dd>Rappresentano attributi e metodi che un oggetto istanza e' in gradi di rappresentare.
+ Sono rappresentati da blocchi rettangolari in cui vi e' il Nome, gli Attributi e i 
+ metodi.
+<img src="imgs/classe.png" class="img-responsive" alt="classe.png"> 
+</dd>
+
+<dt> Interaccia </dt><dd>puo' essere vista come un contratto da rispettare, sono definiti metodi da
+ fornire nella reale interpretazione della classe.
+<img src="imgs/interface.png" class="img-responsive" alt="interface.png"> 
+</dd>
+<dt> Associazioni </dt><dd>determinano una relazione fra due oggetti/classi. Solitamente tale relazione
+ e' implementata utilizzando un istanza di oggetto come variabile di classe.
+ E' disegnata come una linea ai cui apici puo' essere esplicata la cardinalita'.
+<img src="imgs/associations.png" class="img-responsive" alt="associations.png"> 
+</dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> CRC schede</h3>
+<div class="outline-text-3" id="text-1-6">
+
+<figure>
+<p><img src="imgs/crc_example.png" class="img-responsive" alt="crc_example.png">
+</p>
+</figure>
+
+
+<p>
+Selezione dei soggetti/classi.
+</p>
+
+
+<figure>
+<p><img src="imgs/soggetti_crc.png" class="img-responsive" alt="soggetti_crc.png">
+</p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Diagrammi</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Diagramma casi uso</a></li>
+<li><a href="#sec-1-2">1.2. Diagrammi attivita'</a></li>
+<li><a href="#sec-1-3">1.3. Diagrammi stato</a></li>
+<li><a href="#sec-1-4">1.4. Diagramma sequenza</a></li>
+<li><a href="#sec-1-5">1.5. Diagrammi di classe</a></li>
+<li><a href="#sec-1-6">1.6. CRC schede</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Francesco</p>
+<p class="date">Created: 2019-05-21 mar 10:39</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org-mode</a> 9.2.2)</p>
+</div>
+</footer>
+</body>
+</html>

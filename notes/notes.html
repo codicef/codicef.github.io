@@ -1,0 +1,3224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Biomedical Databases Notes</title>
+<!-- 2021-02-24 Wed 15:55 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Francesco Codice' - Lectures of professor Turina">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Introduction</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Database introduction</a></li>
+<li><a href="#sec-1-2">1.2. Relational Model</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Pubmed</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Quering</a></li>
+<li><a href="#sec-2-2">2.2. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. UniProt</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Manual Curation* (it is a process of <span class="underline">validation</span>)</a></li>
+<li><a href="#sec-3-2">3.2. Gene ontology</a></li>
+<li><a href="#sec-3-3">3.3. UniProt Annotation System</a></li>
+<li><a href="#sec-3-4">3.4. Interpro Database</a></li>
+<li><a href="#sec-3-5">3.5. Uniprot Entry</a></li>
+<li><a href="#sec-3-6">3.6. UniParc</a></li>
+<li><a href="#sec-3-7">3.7. UniRef</a></li>
+<li><a href="#sec-3-8">3.8. Proteomes</a></li>
+<li><a href="#sec-3-9">3.9. Protein Classification</a></li>
+<li><a href="#sec-3-10">3.10. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. ENSEMBL</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. ENSEMBL Features</a></li>
+<li><a href="#sec-4-2">4.2. Human Genome</a></li>
+<li><a href="#sec-4-3">4.3. Gene Prediction</a></li>
+<li><a href="#sec-4-4">4.4. Ensembl vs Havana</a></li>
+<li><a href="#sec-4-5">4.5. Glossary</a></li>
+<li><a href="#sec-4-6">4.6. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. PDB</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Validation</a></li>
+<li><a href="#sec-5-2">5.2. PDB File Format</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. NCBI</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. GenBank</a></li>
+<li><a href="#sec-6-2">6.2. RefSeq</a></li>
+<li><a href="#sec-6-3">6.3. Gene</a></li>
+<li><a href="#sec-6-4">6.4. OMIM (Online Mendelian Inheritance in Man)</a></li>
+<li><a href="#sec-6-5">6.5. dbSNP</a></li>
+<li><a href="#sec-6-6">6.6. Nucleotide</a></li>
+<li><a href="#sec-6-7">6.7. Exercises</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. Experimental Methods</a>
+<ul class="nav">
+<li><a href="#sec-7-1">7.1. X-ray Crystallography</a></li>
+<li><a href="#sec-7-2">7.2. NMR Spectroscopy</a></li>
+<li><a href="#sec-7-3">7.3. Cry-electron microscopy</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Database</a></li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Biomedical Databases Notes</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Information flow</b>
+</p>
+
+<figure>
+<p><img src="imgs/Introduction/2021-01-31_17-31-08_screenshot.png" class="img-responsive" alt="2021-01-31_17-31-08_screenshot.png">
+</p>
+</figure>
+
+
+
+<p>
+<b>Type of data</b> :
+</p>
+<ul class="org-ul">
+<li><b>Primary data</b> (experimental results):
+<ul class="org-ul">
+<li>Genomes
+</li>
+<li>Protein Sequences
+</li>
+<li>Protein Structures Interactions
+</li>
+</ul>
+</li>
+<li><b>Secondary data</b> (derived info)
+<ul class="org-ul">
+<li>Protein folds
+</li>
+<li>Protein families
+</li>
+<li>Genome comparisations
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+<p>
+<b>Annotation/Curation</b> :
+</p>
+<ul class="org-ul">
+<li><b>Raw Data</b> : Protein sequence only
+</li>
+<li><b>Annotated Data</b> : Protein sequence with function, localization, expression info, links etc.
+The annotation can be : <i>Manual</i> or <i>Automatic</i>
+</li>
+</ul>
+
+
+<p>
+<b>Common problems</b> :
+</p>
+<ul class="org-ul">
+<li>Quality check : if error enter a database they tend to propagate into other databases
+they are difficult to estirpate.
+</li>
+<li>Lack of standardization : lack of schema and lack of common nomenclature
+</li>
+<li>Integration : is important to integrate more databases. By fusion(uniprot) or by links.
+</li>
+</ul>
+
+<p>
+<b>Main Bioinformatics databases</b><br >
+</p>
+<ul class="org-ul">
+<li>Uniprot: A comprehensive resource for protein sequence and functional annotation.
+</li>
+<li>Ensembl: Genome browser, API and database, providing access to reference genome annotation
+</li>
+<li>PDBe: The European resource for the collection, organisation and dissemination
+of 3D structural data (from PDB).
+</li>
+<li>InterPro : A databse for the classification of proteins into families, domains
+and conserved sites.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Database introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A database is a large structured set of persistent data, usually in
+computer-readable form
+</p>
+
+<p>
+<b>Database terminology</b>
+</p>
+<ul class="org-ul">
+<li><i>Table</i> : A collection of closely related columns. A table consists of rows each of which shares the same columns but vary in the column values.
+</li>
+<li><i>Record</i> : A record is a collection of fields, possibly of different data
+types, typically in a fixed number and sequence
+</li>
+<li><i>Key</i> : A Key is a data item that exclusively identifies a record. In other
+words, key is a set of column(s) that is used to uniquely identify the record
+in a table
+</li>
+<li><i>Field</i> : A database field is a single piece of information from a record.
+</li>
+</ul>
+
+<p>
+<b>DBMS</b><br >
+DBMS software primarily functions as an interface between the end user and the
+database, simultaneously managing the data, the database engine, and the
+database schema in order to facilitate the organization and manipulation of data
+Allows the user to:
+</p>
+<ul class="org-ul">
+<li>Access data
+</li>
+<li>Manipulate data
+</li>
+<li>Preserve the integrity
+</li>
+<li>Deal with security
+</li>
+</ul>
+
+<p>
+<b>DBMS Models</b>:
+</p>
+<ul class="org-ul">
+<li>Flat file
+</li>
+<li>Hierical Models
+</li>
+<li>Relational Model
+</li>
+<li>Object-Oriented Model
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Relational Model</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Schema : logical structure of the data. <i>Intensional</i> part
+</li>
+<li>Instance : is the set of actual data. <i>Extensional</i> part
+</li>
+</ul>
+
+
+<p>
+<b>How to store a Schema</b><br >
+</p>
+<ul class="org-ul">
+<li>Flat file – simple and available to all
+</li>
+<li>XML – eXtensible Markup Language (Markups instruct the software displaying the
+text)
+</li>
+<li>ASN.1 – Abstract Syntax Notation One (NCBI uses ASN.1 for data storage and
+retrieval)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Pubmed</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The National Center for Biotechnology Information (NCBI)(<sub>www.ncbi.nlm.nih.gov</sub>_)
+Created in 1988 as a part of the National Library of Medicine (NLM) at the
+National Institute of Health (NIH).
+</p>
+
+
+<p>
+<b>PubMed sections</b><br >
+</p>
+<ul class="org-ul">
+<li>PubMed free Medline
+</li>
+<li>PubMed Central : full text online access
+</li>
+<li>MeSH database (Medial Subject Headings) : controlled vocabulary thesaurus
+</li>
+</ul>
+
+
+<p>
+<b>Why databases search is important?</b><br >
+</p>
+<ul class="org-ul">
+<li>The scientific literature increases by 2000 pages every minute.
+</li>
+<li>It would take 5 years to read the new scientific literature produced in 1 day.
+</li>
+</ul>
+<p>
+\(\rightarrow\) Search engines play an essential role for picking out the right articles
+</p>
+</div>
+
+
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Quering</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<b>How to search?</b><br >
+</p>
+<ul class="org-ul">
+<li><b>by Author</b> : name and initials with [&rsquo;author&rsquo;] tag (e.g. &rsquo;lesk am&rsquo;)
+</li>
+<li><b>by Subject</b> : put the keyboard in search field (&rsquo;e.g. &rsquo;evolution&rsquo;)
+</li>
+<li><b>by Journal</b> : put the name of the journal with [&rsquo;journal&rsquo;] tag
+</li>
+</ul>
+
+<p>
+PubMed uses <b>Automatic Term Mapping</b> : for any terms entered without a qualifier are looked
+up against the following translation tables and indexes in a distinct order
+</p>
+<ol class="org-ol">
+<li>MeSH Translation Table (terms like diseases, phenomena etc.)
+</li>
+<li>Journal Translation Table
+</li>
+<li>Author Index
+</li>
+</ol>
+
+<p>
+It performs a translation and build the database query automatically
+</p>
+
+<p>
+<span class="underline">Example</span>
+Search: lesk am evolution
+</p>
+<pre class="example">
+lesk am[Author] AND ("biological evolution"[MeSH Terms] OR ("biological"[All Fields]
+AND "evolution"[All Fields]) OR "biological evolution"[All Fields] OR "evolution"[All Fields]
+OR "evolution s"[All Fields] OR "evolutional"[All Fields] OR "evolutions"[All Fields]
+OR "evolutive"[All Fields] OR "evolutivity"[All Fields])
+</pre>
+
+
+<p>
+For any database we usually have table that list all the possible <i>search fields</i>
+</p>
+
+<figure>
+<p><img src="Introduction/field_Description_2020-11-17_14-42-00.png" class="img-responsive" alt="field_Description_2020-11-17_14-42-00.png">
+</p>
+<figcaption><span class="figure-number">Figure 2:</span> Field Description Page of PubMed</figcaption>
+</figure>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> MeSH</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+MeSH vocabulary is divided into four types of terms. The main ones are the
+&ldquo;headings&rdquo; (also known as MeSH headings or descriptors[2]), which describe the
+subject of each article (e.g., &ldquo;Body Weight&rdquo;, &ldquo;Brain Edema&rdquo; or &ldquo;Critical Care
+Nursing&rdquo;).
+</p>
+
+<ul class="org-ul">
+<li>Search MeSH db with a keyword
+</li>
+<li>click on the MeSH term, look at “Related information&ldquo; and search in Pubmed
+</li>
+<li>for restricting use &ldquo;Major Topics&rdquo;
+</li>
+</ul>
+
+<p>
+In addition to the descriptor hierarchy, MeSH contains a small number of standard
+<i>qualifiers</i> (also known as subheadings), which can be added to descriptors to narrow
+down the topic. For example, &ldquo;Measles&rdquo; is a descriptor and &ldquo;epidemiology&rdquo; is a
+qualifier; &ldquo;Measles/epidemiology&rdquo; describes the subheading of epidemiological
+articles about Measles. The &ldquo;epidemiology&rdquo; qualifier can be added to all other
+disease descriptors. Not all descriptor/qualifier combinations are allowed since some
+of them may be meaningless. In all there are 83 different qualifiers.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Api access</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Entrez Direct (EDirect) provides access to the NCBI&rsquo;s suite of interconnected databases
+(pubblications, sequences, structues, genes, variations, expressions, etc.) from a
+UNIX terminal windows.
+</p>
+
+<p>
+<b>Entrez Dirext Functions</b><br >
+</p>
+<ul class="org-ul">
+<li><b>esearch</b> : performs a new Entrex search using terms in indexed fields
+</li>
+<li><b>efetch</b> : downloads records or reports in a designated format
+</li>
+<li><b>xtract</b> : converts EDirect XML output into a table of data values
+</li>
+<li><b>epost</b> : uploads unique indentifiers (UIDs) or sequence accession numbers
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Exercises</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Exercise 1</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li><b>Question</b> : Within PubMed, search for articles which contain as &ldquo;Text Word&rdquo;
+&ldquo;circadian rhythms&rdquo; and either &ldquo;cortisol&rdquo; or &ldquo;melatonin&rdquo;. Limit your search to
+articles which contain &ldquo;humans&rdquo; as a MeSH term, and exclude all Review
+articles. How many entries have you found?
+</li>
+<li><b>Answer</b>
+953 entries are present for this query.
+The query used is the following
+<pre class="example">
+    "circadian rhythms "[Text Word] AND (melatonin[Text Word] OR cortisol[Text Word]) AND "Humans"[MeSH Terms] NOT "review"[Publication Type]
+</pre>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Exercise 2</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<ul class="org-ul">
+<li><b>Question</b> : Find all articles with first or last author “Smith”, which have
+been &ldquo;nih funded&rdquo; (hint: check in &ldquo;Filter&rdquo;), whose major topics is “Alzheimer
+disease”, dealing in particular with the diagnosis of such disease. How many
+articles have you found ?
+</li>
+
+<li><b>Answer</b>
+
+<pre class="example">
+    ((Smith[Author - Last] OR Smith[Author - First]) AND "nih funded"[Filter] AND "Alzheimer disease/Diagnosis"[MeSH Major Topic])
+</pre>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> UniProt</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+UniProt is a freely accessible database of protein sequence and functional information, many entries being derived from genome sequencing projects. It contains a large amount of information about the biological function of proteins derived from the research literature
+</p>
+
+<p>
+A comprehensive resource for protein sequence and functional annotation.
+</p>
+
+<p>
+It is a consortium
+</p>
+<ul class="org-ul">
+<li><b>SIB</b> (Swiss Institute of Bioinformatics) : /UniProtKB/(UniProt Knowledgebase) <span class="underline"><i>Swiss-Prot</i></span>
+</li>
+<li><b>EBI</b> (European Bioinformatics Institute) : UniProtKB <span class="underline"><i>TrEMBL</i></span> and <span class="underline"><i>UniParc</i></span> (UniProt Archive)
+</li>
+<li><b>PIR</b> (Protein Information Resource) : <span class="underline"><i>UniRef</i></span> (UniProt Reference Cluter)
+</li>
+</ul>
+
+
+<p>
+<b>UniProt Data Flow</b>
+EMBL(Cds) \(\rightarrow_{\text{(Translation)(Automatic Annotation)}}\)  \(\rightarrow\) TrEMBL(Protein) \(\rightarrow_{\text{(Manual Curation)}}\) Swiss-Prot(Protein)
+</p>
+
+
+<figure>
+<p><img src="UniProt/uniprot_scheme_2020-11-17_15-52-59.png" class="img-responsive" alt="uniprot_scheme_2020-11-17_15-52-59.png">
+</p>
+<figcaption><span class="figure-number">Figure 3:</span> UniProt Scheme</figcaption>
+</figure>
+
+
+<p>
+I very important understand which UniProt Release we are using.
+</p>
+</div>
+
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Manual Curation* (it is a process of <span class="underline">validation</span>)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<i>Manual curation</i> consists of a critical review of experimental and predicted data
+for each protein as well as manual verification of each protein sequence.
+Curation methods applied to UniProtKB/Swiss-Prot include
+</p>
+<ul class="org-ul">
+<li>manual extraction and structuring of information from the literature
+</li>
+<li>manual verification of results from computational analyses
+</li>
+<li>mining and integration of large-scale data sets
+</li>
+<li>continuous updating as new information becomes available.
+</li>
+</ul>
+
+
+
+<p>
+<b>Discrepancies between sequence reports</b> are identified, with underlying causes such as:
+</p>
+<ul class="org-ul">
+<li>alternative splicing
+</li>
+<li>natural variations
+</li>
+<li>frameshifts
+</li>
+<li>incorrect initiation sites
+</li>
+<li>incorrect exon boundaries
+</li>
+<li>unidentified conflicts
+</li>
+<li>erroneous gene prediction
+</li>
+</ul>
+
+<p>
+<b>Comparison with homologous sequences</b> can be used to identify sequence errors
+and their causes. Each protein in Swiss-Prot should be as complete and correct as possible.
+</p>
+
+<p>
+<b>Annotations</b><br >
+</p>
+<ul class="org-ul">
+<li>Biological Process
+</li>
+<li>Molecular Function : Activity or task performed
+</li>
+<li>Cellular Component : Where is the protein located
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Gene ontology</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+An ontology is a formal representation of a body of knowledge within a given domain.
+Ontologies usually consist of a set of classes (or terms or concepts) with relations that
+operate between them.
+</p>
+
+<p>
+The Gene Ontology (GO) describes our knowledge of the biological domain with respect to three
+aspects:
+</p>
+<ul class="org-ul">
+<li><i>Molecular function</i> : Molecular-level activities performed by gene products. Molecular
+function terms describe activities that occur at the molecular level, such as “catalysis” or
+“transport”. GO molecular function terms represent activities rather than the entities
+(molecules or complexes) that perform the actions, and do not specify where, when, or in
+what context the action takes place. Molecular functions generally correspond to activities
+that can be performed by individual gene products (i.e. a protein or RNA).
+</li>
+
+<li><i>Cellular Component</i> : The locations relative to cellular structures in which a gene product
+performs a function, either cellular compartments (e.g., mitochondrion), or stable
+macromolecular complexes of which they are parts (e.g., the ribosome).
+</li>
+
+<li><i>Biological Process</i> : The larger processes, or ‘biological programs’ accomplished by
+multiple molecular activities. Examples of broad biological process terms are DNA repair or
+signal transduction. Examples of more specific terms are pyrimidine nucleobase biosynthetic
+process or glucose transmembrane transport.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> GO Classes</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+GO classes (or GO terms) are composed of a definition, a label, a unique identifier, and
+several other elements.
+</p>
+
+<p>
+<span class="underline">Required fields</span><br >
+</p>
+<ul class="org-ul">
+<li>Unique Identifier (ID)
+</li>
+<li>Term Human Readable name
+</li>
+<li>Aspect : which of the three ontologies does this entity belong to
+</li>
+<li>Definition: textual definition of what the terms represent
+</li>
+<li>Relationship with other terms
+</li>
+</ul>
+
+<p>
+<span class="underline">Optional elements</span><br >
+</p>
+<ul class="org-ul">
+<li>Secondary ID
+</li>
+<li>Synonyms
+</li>
+<li>Comments
+</li>
+<li>DB cross reference
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Go domains and graph</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+The three GO domains (cellular component, biological process, and molecular function) are each
+ represented by a separate root ontology term. All terms in a domain can trace their parentage
+ to a root term, although there may be numerous different paths via varying numbers of
+ intermediary terms to a ontology root. The three root nodes are unrelated and do not have a
+ common parent node, and hence GO is three ontologies.
+<img src="file:///home/codicef/bioinformatics-notes/Bioinformatics_Lab1/Functional Annotation/ggaagaga_2020-12-20_15-42-29.gif" class="img-responsive" alt="ggaagaga_2020-12-20_15-42-29.gif">
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Go annotations</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+A GO annotation is a statement about the function of a particular gene. GO annotations are
+created by associating a gene or gene product with a GO term.
+</p>
+
+<p>
+Together, these statements comprise a “snapshot” of current biological knowledge. Hence, GO
+annotations capture statements about how a gene functions at the molecular level, where in the
+cell it functions, and what biological processes (pathways, programs) it helps to carry out.
+</p>
+
+<p>
+There are four pieces of information that uniquely identify a GO annotation. Although there
+are additional components a curator can use to indicate more information, including qualifiers
+and annotation extensions, at the very minimum an annotation consists of:
+</p>
+
+<ul class="org-ul">
+<li>Gene product (may be a protein, RNA, etc.)
+</li>
+<li>GO term
+</li>
+<li>Reference
+</li>
+<li>Evidence
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-4" class="outline-4">
+<h4 id="sec-3-2-4"><span class="section-number-4">3.2.4</span> Go Evidence</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+We can have different level of evidence with the following codes
+</p>
+<ul class="org-ul">
+<li>Inferred from Experiment (EXP)
+</li>
+<li>Inferred from Direct Assay (IDA)
+</li>
+<li>Inferred from Physical Interaction (IPI)
+</li>
+<li>Inferred from Mutant Phenotype (IMP)
+</li>
+<li>Inferred from Genetic Interaction (IGI)
+</li>
+<li>Inferred from Expression Pattern (IEP)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> UniProt Annotation System</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<b>Enzyme Classification</b> (6 CLASSES)
+</p>
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="right">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="text-right">EC Class</td>
+<td class="text-left">Reaction Type</td>
+</tr>
+
+<tr>
+<td class="text-right">1</td>
+<td class="text-left">Oxidoreductases</td>
+</tr>
+
+<tr>
+<td class="text-right">2</td>
+<td class="text-left">Trannsferases</td>
+</tr>
+
+<tr>
+<td class="text-right">3</td>
+<td class="text-left">Hydrolases</td>
+</tr>
+
+<tr>
+<td class="text-right">4</td>
+<td class="text-left">Lyases</td>
+</tr>
+
+<tr>
+<td class="text-right">5</td>
+<td class="text-left">Isomerases</td>
+</tr>
+
+<tr>
+<td class="text-right">6</td>
+<td class="text-left">Ligases</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+This is a tree like classification. It is used a 4 numbers code to annotate an enzyme.
+</p>
+
+
+<figure>
+<p><img src="UniProt/enzyme_annotation_2020-11-17_16-33-10.png" class="img-responsive" alt="enzyme_annotation_2020-11-17_16-33-10.png">
+</p>
+<figcaption><span class="figure-number">Figure 4:</span> Annotation of Enzyme</figcaption>
+</figure>
+
+
+<ul class="org-ul">
+<li><b>UniProtKB/TrEMBL</b>
+<ul class="org-ul">
+<li>Redundant
+<ul class="org-ul">
+<li>1 entry for each translated ENA entry
+</li>
+<li>Computationally analyzed
+</li>
+<li>Automatically annotated
+</li>
+<li>Unreviewed
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>
+<b>ARBA (Association rule based annotation)</b> : uses rule mining techniques to generate
+annotation models, based on the InterPro classification.
+</p>
+
+
+
+<ul class="org-ul">
+<li><b>UniProtKB/SwissProt</b>
+<ul class="org-ul">
+<li>Non-Redundant
+<ul class="org-ul">
+<li>1 entry for each protein
+</li>
+<li>Curator analyzed
+</li>
+<li>High-quality manually annotated
+</li>
+<li>Reviewed
+It is safe to assume that manual annotations are more reliable than automatic ones.
+<b>UniRule</b>: maintains a set of manually established annotation rules.
+
+<p>
+<b>InterPro</b> is an effort to integrate all the main databases about protein classification.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<figure>
+<p><img src="UniProt/annotation_workflow_2020-11-17_16-59-14.png" class="img-responsive" alt="annotation_workflow_2020-11-17_16-59-14.png">
+</p>
+<figcaption><span class="figure-number">Figure 5:</span> Annotation Sources used by curators</figcaption>
+</figure>
+</div>
+
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Evidence And Conlcusion Ontology</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+An <b>evidence</b> is described by a type (mandatory evidence type), represented by a code from
+the Evidence and Conclusion Onthology(ECO) and ,if available, the source of the information,
+which is usually a database record.
+</p>
+
+<p>
+<b>Example</b>
+</p>
+<ul class="org-ul">
+<li>Evidence type without source{type}
+<pre class="example">
+{ECO: 0000305}
+{ECO: 000250}
+{ECO: 000255}
+</pre>
+</li>
+
+<li>Evidence type with source {type|source}
+<pre class="example">
+{ECO: 0000305|Pubmed:2435555}
+{ECO: 000250|UniProtKB:p11497}
+</pre>
+</li>
+</ul>
+
+
+<figure>
+<p><img src="UniProt/manual_auto_annotations_2020-11-17_16-55-28.png" class="img-responsive" alt="manual_auto_annotations_2020-11-17_16-55-28.png">
+</p>
+<figcaption><span class="figure-number">Figure 6:</span> Annotation format/style on Uniprot</figcaption>
+</figure>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> Annotations categories</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>Function
+</li>
+<li>Names &amp; Taxonomy
+</li>
+<li>Subcellular location
+</li>
+<li>Pathology &amp; Biotech
+</li>
+<li>Post Translation Modifications / Processing
+</li>
+<li>Expression
+</li>
+<li>Interactions
+</li>
+<li>Structure
+</li>
+<li>Family and Domains
+</li>
+<li>Sequences
+</li>
+<li>Similar Proteins
+</li>
+<li>Cross-referenes
+</li>
+<li>Entry informations
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> Automatic Annotation</h4>
+<div class="outline-text-4" id="text-3-3-3">
+
+<figure>
+<p><img src="imgs/UniProt/2021-02-01_18-24-09_screenshot.png" class="img-responsive" alt="2021-02-01_18-24-09_screenshot.png">
+</p>
+</figure>
+
+
+<p>
+<b>Problems</b><br >
+Electronic Annotation follows the principle that proteins with similar sequences
+and similar structures frequently carry out similar functions.
+</p>
+
+<p>
+But protein sequence or structure similarity alone does not necessarily equate
+to cellular or molecular functional similarity.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> Annotation Score</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<p>
+The annotation score provides a heuristic measure of the annotation content of a
+UniProtKB entry or proteome. This score cannot be used as a measure of the
+accuracy of the annotation as we cannot define the &rsquo;correct annotation&rsquo; for any
+given protein.
+</p>
+
+<p>
+The annotation score is computed in the following way:
+</p>
+
+<ul class="org-ul">
+<li>Different UniProtKB annotation types (e.g. protein names, gene names, functional annotations (comments) and sequence annotations (features), GO annotations, cross-references) are scored either by presence or by number of occurrences.
+
+<p>
+Annotations with experimental evidence score higher than equivalent
+predicted/inferred annotations, thereby favoring expert literature-based
+curation over automatic annotation.
+</p>
+</li>
+
+<li>The score of an individual entry is the sum of the scores of its annotations.
+</li>
+
+<li>The score of a proteome is the sum of the scores of the entries that are part of the proteome.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Interpro Database</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+InterPro is a database of <span class="underline">protein families, domains and functional sites</span> in which identifiable features found in known proteins can be applied to new protein sequences in order to functionally characterise them.
+</p>
+
+<p>
+The contents of InterPro consist of diagnostic signatures and the proteins that
+they significantly match. The <span class="underline">signatures consist of models</span> (<i>simple types,
+such as regular expressions or more complex ones, such as Hidden Markov models</i>)
+which describe <i>protein families</i>, <i>domains</i> or <i>sites</i>.
+</p>
+
+<p>
+Models are built from the amino acid sequences of known families or domains and
+they are subsequently used to search unknown sequences (such as those arising
+from novel genome sequencing) in order to classify them.
+</p>
+
+
+<ul class="org-ul">
+<li>In InterPro, patterns, profiles, fingerprints and HMMs from a number of
+different databases are brought together into a single searchable resource.
+</li>
+</ul>
+
+
+<figure>
+<p><img src="imgs/UniProt/2021-02-01_18-38-27_screenshot.png" class="img-responsive" alt="2021-02-01_18-38-27_screenshot.png">
+</p>
+</figure>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Uniprot Entry</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Annotations of a UniProtKB entry are structured into the following sections:
+</p>
+<ul class="org-ul">
+<li>Function
+</li>
+<li>Names &amp; Taxonomy
+</li>
+<li>Subcellular location
+</li>
+<li>Pathology and Biotech
+</li>
+<li>PTM / Processing
+</li>
+<li>Expression
+</li>
+<li>Interaction
+</li>
+<li>Structure
+</li>
+<li>Family and Domains
+</li>
+<li>Sequence(s)
+</li>
+<li>Cross-references
+</li>
+<li>Publications
+</li>
+<li>Entry information
+</li>
+<li>Miscellaneous
+</li>
+<li>Similar Proteins
+</li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> UniParc</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+UniProt Archive (UniParc): An archive for tracking protein sequences
+</p>
+<ul class="org-ul">
+<li>Comprehensive : contains most of the publicly available protein sequences in
+the world
+</li>
+<li>Non-redundant : merges identical sequence strings, each unique sequence is
+given a stable and unique identifier (UPI)
+</li>
+<li>Traceable : Versioned, with ‘active’ and ‘obsolete’ status tags
+</li>
+<li>Concise : no annotations
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> UniRef</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+The <i>UniProt Reference Clusters (UniRef)</i> provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view.
+</p>
+
+<p>
+<b>UniRef Cluters</b><br >
+</p>
+<ul class="org-ul">
+<li><i>UniRef50</i> : UniRef50 is generated by clustering UniRef90 seed sequences that
+have at least 50% sequence identity.
+</li>
+
+<li><i>UniRef90</i> : UniRef90 is generated by clustering UniRef100 seed sequences that
+have at least 90% sequence identity.
+</li>
+
+<li><i>UniRef100</i> : UniRef100 contains all UniProt Knowledgebase records plus selected UniParc records (see below). It is generated by clustering identical sequences and subfragments.
+</li>
+</ul>
+
+
+
+<figure>
+<p><img src="imgs/UniProt/2021-02-04_11-15-31_screenshot.png" class="img-responsive" alt="2021-02-04_11-15-31_screenshot.png">
+</p>
+</figure>
+</div>
+
+<div id="outline-container-sec-3-7-1" class="outline-4">
+<h4 id="sec-3-7-1"><span class="section-number-4">3.7.1</span> UniRef Seed</h4>
+<div class="outline-text-4" id="text-3-7-1">
+<ul class="org-ul">
+<li>A UniRef seed is the sequence that has been used as the template to recruit
+other sequences by the clustering algorithm. The seed sequence is the longest
+member of a cluster.
+</li>
+<li>However, the longest sequence is not always the most informative one. There is
+often more biologically relevant information (name, function,
+cross-references) available on other cluster members. Therefore, in addition,
+a <i>representative sequence is chosen for each cluster</i>.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> Proteomes</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+A proteome is the set of proteins thought to be expressed by an organism.
+UniProt provides proteomes for species with completely sequenced genomes
+</p>
+
+<ul class="org-ul">
+<li><i>Reference Proteomes</i> : Some proteomes have been (manually and
+algorithmically) selected as reference proteomes. They cover well-studied
+model organisms and other organisms of interest for biomedical research and
+phylogeny
+</li>
+</ul>
+
+
+
+<figure>
+<p><img src="imgs/UniProt/2021-02-04_11-19-25_screenshot.png" class="img-responsive" alt="2021-02-04_11-19-25_screenshot.png">
+</p>
+<figcaption><span class="figure-number">Figure 10:</span> Proteome Complexity</figcaption>
+</figure>
+</div>
+
+
+<div id="outline-container-sec-3-8-1" class="outline-4">
+<h4 id="sec-3-8-1"><span class="section-number-4">3.8.1</span> Human Proteome</h4>
+<div class="outline-text-4" id="text-3-8-1">
+<p>
+September 2008 First draft of the complete human proteome available in
+UniProtKB/ Swiss-Prot. Gene prediction algorithms, plus the existing transcript
+and protein information, have enabled the identification of most exons in a
+genome.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-3-9" class="outline-3">
+<h3 id="sec-3-9"><span class="section-number-3">3.9</span> Protein Classification</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+<b>Protein Family</b><br >
+A protein family is a group of proteins that share a common evolutionary origin,
+reflected by their related functions and similarities in sequence or structure.
+Protein families are often arranged into hierarchies.
+</p>
+
+
+
+<figure>
+<p><img src="UniProt/proteinfamilies_2020-11-24_15-05-42.png" class="img-responsive" alt="proteinfamilies_2020-11-24_15-05-42.png">
+</p>
+<figcaption><span class="figure-number">Figure 11:</span> Protein families</figcaption>
+</figure>
+
+
+
+
+<figure>
+<p><img src="UniProt/proteinfaimilies%20example_2020-11-24_15-07-35.png" class="img-responsive" alt="proteinfaimilies%20example_2020-11-24_15-07-35.png">
+</p>
+</figure>
+
+
+
+
+
+<p>
+<b>Protein Domains</b>
+</p>
+
+<p>
+A protein domain is a conserved part of a given protein sequence and tertiary structure that
+can evolve, function, and exist independently of the rest of the protein chain. Each domain
+</p>
+
+<p>
+Domains have been described as units of:
+</p>
+<ul class="org-ul">
+<li>compact structure
+</li>
+<li>function and evolution
+</li>
+<li>folding
+</li>
+</ul>
+
+<p>
+Each of these definition is valid and will often overlap. The identification of
+domains that occur within proteins can provide insights into their function.
+</p>
+
+
+
+<p>
+<b>Protein Signatures</b>
+Signatures: mathematical models constructed from MSA.
+They are often a very sensitive way of identifying protein function.
+</p>
+
+<figure>
+<p><img src="UniProt/signatures_2020-11-24_15-25-48.png" class="img-responsive" alt="signatures_2020-11-24_15-25-48.png">
+</p>
+<figcaption><span class="figure-number">Figure 13:</span> Protein Signatures</figcaption>
+</figure>
+
+
+<p>
+<b>Protein Profile</b>
+</p>
+</div>
+
+
+
+
+<div id="outline-container-sec-3-9-1" class="outline-4">
+<h4 id="sec-3-9-1"><span class="section-number-4">3.9.1</span> InterPro database</h4>
+<div class="outline-text-4" id="text-3-9-1">
+<p>
+In InterPro, patterns, profiles, fingerprints and HMMs from a number of different databases
+are brought together into a single searchable resource.
+</p>
+
+<figure>
+<p><img src="UniProt/interpro_2020-11-24_15-36-03.png" class="img-responsive" alt="interpro_2020-11-24_15-36-03.png">
+</p>
+<figcaption><span class="figure-number">Figure 14:</span> Interpro scheme</figcaption>
+</figure>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-9-2" class="outline-4">
+<h4 id="sec-3-9-2"><span class="section-number-4">3.9.2</span> PFam Database</h4>
+<div class="outline-text-4" id="text-3-9-2">
+
+<figure>
+<p><img src="UniProt/pfam_2020-11-24_15-39-01.png" class="img-responsive" alt="pfam_2020-11-24_15-39-01.png">
+</p>
+<figcaption><span class="figure-number">Figure 15:</span> Pfam</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-3-10" class="outline-3">
+<h3 id="sec-3-10"><span class="section-number-3">3.10</span> Exercises</h3>
+<div class="outline-text-3" id="text-3-10">
+</div><div id="outline-container-sec-3-10-1" class="outline-4">
+<h4 id="sec-3-10-1"><span class="section-number-4">3.10.1</span> Exercise 1</h4>
+<div class="outline-text-4" id="text-3-10-1">
+<ul class="org-ul">
+<li><b>Question</b> : Write down a single query which will retrieve within UniProt all proteins, labelled as proteases in the CC function field, from human and mouse, excluding those labelled as &ldquo;cysteine proteases&rdquo; in the same field.
+</li>
+
+<li><b>Answer</b>
+</li>
+</ul>
+<p>
+#+BEIN<sub>SRC</sub>
+annotation:(type:function protease) (organism:&ldquo;Homo sapiens (Human) [9606]&rdquo; OR organism:&ldquo;Mus musculus (Mouse) [10090]&rdquo;) NOT annotation:(type:function &ldquo;cysteine protease&rdquo;)
+#+END<sub>SRC</sub>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-10-2" class="outline-4">
+<h4 id="sec-3-10-2"><span class="section-number-4">3.10.2</span> Exercise 2</h4>
+<div class="outline-text-4" id="text-3-10-2">
+<ul class="org-ul">
+<li><b>Question</b>
+</li>
+</ul>
+<p>
+Do the same as above, but using the EC codes for &ldquo;proteases&rdquo; and for &ldquo;cysteine proteases&rdquo;.
+</p>
+
+<ul class="org-ul">
+<li><b>Answer</b>
+<pre class="example">
+ec:3.4.*.* NOT ec:3.4.22.* (organism:"Homo sapiens (Human) [9606]" OR organism:"Mus musculus (Mouse) [10090]")
+</pre>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-10-3" class="outline-4">
+<h4 id="sec-3-10-3"><span class="section-number-4">3.10.3</span> Exercise 3</h4>
+<div class="outline-text-4" id="text-3-10-3">
+<ul class="org-ul">
+<li><b>Question</b> :
+Which protein is involved in the human sma2 disease ? (insert UniProt code)
+</li>
+
+<li><b>Answer</b>
+<pre class="example">
+  annotation:(type:disease sma2) AND organism:"Homo sapiens (Human) [9606]"
+</pre>
+
+<p>
+Q16637 (<a href="https://www.uniprot.org/uniprot/Q16637">https://www.uniprot.org/uniprot/Q16637</a>)
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-10-4" class="outline-4">
+<h4 id="sec-3-10-4"><span class="section-number-4">3.10.4</span> Exercise 4</h4>
+<div class="outline-text-4" id="text-3-10-4">
+<ul class="org-ul">
+<li><b>Question</b>
+<ul class="org-ul">
+<li>Which natural variant reduces in the sma2 and sma3 disease the binding of such protein to RPP20/POP7?  Which is the corresponding dbSNP code? (insert UniProt variant code and dbSNP code)
+</li>
+<li>On which evidence is the above piece of information based? Which is the
+UniProt code for the evidence type?
+</li>
+</ul>
+</li>
+<li><b>Answer</b>
+Search in pathology and biotech sections
+<ul class="org-ul">
+<li><span class="underline">Natural variant VAR<sub>005618</sub></span>   <span class="underline">dbSNP:rs76871093</span>
+</li>
+<li>Experimental ,  ECO:0000269
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-10-5" class="outline-4">
+<h4 id="sec-3-10-5"><span class="section-number-4">3.10.5</span> Exercise 5</h4>
+<div class="outline-text-4" id="text-3-10-5">
+<ul class="org-ul">
+<li><b>Question</b>
+</li>
+
+<li><b>Answer</b>
+UP000005640 &lt;- Proteome id
+<ul class="org-ul">
+<li>75,777 &lt;- Proteins present
+</li>
+<li>602 &lt;- Uncertain proteins
+<pre class="example">
+    existence:"Uncertain [5]" AND organism:"Homo sapiens (Human) [9606]" AND proteome:up000005640
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> ENSEMBL</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Ensembl is a joint project between the European Bioinformatics Institute and the
+Wellcome Trust Sanger Institute, launched in 1999 in response to the imminent
+completion of the Human Genome Project.
+</p>
+
+<ul class="org-ul">
+<li>The Ensembl project team developed new software pipelines to automatically
+generate evidence-based annotation of genome sequences.
+</li>
+<li>The Ensembl project has expanded from the curation of the human genome to
+embrace more than 50 vertebrate species, and several hundreds non vertebrates
+species.
+</li>
+<li>Generating the annotation is just the start. Ensembl provides several means of
+data access, the foremost of which is a highly customisable, interactive
+website.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> ENSEMBL Features</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>The gene set
+<ul class="org-ul">
+<li>Splice variant, proteins, noncoding RNA
+</li>
+</ul>
+</li>
+<li>Comparative analysis
+<ul class="org-ul">
+<li>Whole genome alignments, protein trees
+</li>
+</ul>
+</li>
+<li>Variation and regulation
+<ul class="org-ul">
+<li>Variants (SNPs, InDels, CNVs)
+</li>
+</ul>
+</li>
+<li>BioMart (data export)
+</li>
+<li>Programmatic access via Perl-API, MySQL
+</li>
+<li>Data and code are open source
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Human Genome</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+The human genome consists of three billion base pairs, which code for approximately <i>20,000–25,000</i> genes.
+</p>
+
+<ul class="org-ul">
+<li>However the genome alone is of little use, unless the locations and relationships of individual genes can be identified. One option is manual annotation, whereby a team of scientists tries to locate genes using experimental data from scientific journals and public databases. However this is a slow, painstaking task.
+</li>
+<li>The alternative, known as automated annotation, is to use the power of computers to do the complex pattern-matching of protein to DNA.
+</li>
+</ul>
+
+
+
+
+<figure>
+<p><img src="imgs/ENSEMBL/2021-02-05_10-43-08_screenshot.png" class="img-responsive" alt="2021-02-05_10-43-08_screenshot.png">
+</p>
+</figure>
+
+<p>
+About 1.5% of the genome consists of the \(\simeq 20,000\) protein-coding sequences which
+are interspersed by the non coding introns ( \(\simeq 26%\) ). Transposable Elements are
+the largest fraction (40-50%) including for example Long Interspersed Nuclear
+Elements (LINEs), and Short Interspersed Nuclear Elements (SINEs). Most
+Transposable Elements are genomic remnants, which are currently defunct.
+</p>
+
+
+<p>
+<b>Transcribed Human Genome</b>
+</p>
+
+<figure>
+<p><img src="imgs/ENSEMBL/2021-02-05_10-44-54_screenshot.png" class="img-responsive" alt="2021-02-05_10-44-54_screenshot.png">
+</p>
+</figure>
+</div>
+
+<div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> Gene Quantification</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+A comparison between the number of genes in an organism and a naïve estimate
+based on the genome size divided by a constant factor of 1000bp/gene.
+</p>
+
+<p>
+It is found that this crude rule of thumb, which works well for many bacteria
+and archaea, fails for multicellular organisms.
+</p>
+
+
+<figure>
+<p><img src="imgs/ENSEMBL/2021-02-05_10-46-53_screenshot.png" class="img-responsive" alt="2021-02-05_10-46-53_screenshot.png">
+</p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Gene Prediction</h3>
+<div class="outline-text-3" id="text-4-3">
+
+<figure>
+<p><img src="imgs/ENSEMBL/2021-02-05_10-54-04_screenshot.png" class="img-responsive" alt="2021-02-05_10-54-04_screenshot.png">
+</p>
+</figure>
+
+<p>
+<b>Automatic Annotation</b><br >
+Gene building all at once (whole genome) → «Ensembl»
+</p>
+<ul class="org-ul">
+<li>cDNA and protein alignments (from sequence DBs)
+</li>
+<li>RNAseq data
+</li>
+<li>Ab initio predictions (based on the genomic sequence, no experimental
+evidence)
+</li>
+<li>Gene predictions based on ESTs (ESTGenes)
+</li>
+</ul>
+
+
+<p>
+<b>Manual Annotation</b><br >
+Gene determination on a case-by-case by a curator →
+</p>
+<ul class="org-ul">
+<li>VEGA (VErtebrate Genome Annotation)
+</li>
+<li>Havana (Human And Vertebrate ANalysis and Annotation)
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Ensembl vs Havana</h3>
+<div class="outline-text-3" id="text-4-4">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">ENSEBL</th>
+<th scope="col" class="text-left">Havana</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">Automatic Annotation</td>
+<td class="text-left">Manual Annotation</td>
+</tr>
+
+<tr>
+<td class="text-left">Many Species(n=61)</td>
+<td class="text-left">Fewer Species</td>
+</tr>
+
+<tr>
+<td class="text-left">Genome-wide at once</td>
+<td class="text-left">Gene by gene</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+When Havana and Ensembl predict the same transcript, basepair for basepair, the
+transcripts are merged and coloured gold
+</p>
+
+
+<ul class="org-ul">
+<li>A protein is deposited into the <i>&ldquo;Consensus CDS protein set&rdquo;</i> (CCDS set) if
+NCBI, UCSC, Havana, Ensembl have determined the same sequence.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Glossary</h3>
+<div class="outline-text-3" id="text-4-5">
+</div><div id="outline-container-sec-4-5-1" class="outline-4">
+<h4 id="sec-4-5-1"><span class="section-number-4">4.5.1</span> Locating a gene</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<p>
+The cytogenetic location, a standardized way of describing a gene’s location on the chromosome, consists of a combination of numbers and letters and is made up of three components:
+</p>
+
+<p>
+Number or letter of the chromosome (1-23, X or Y)
+</p>
+
+<p>
+Arm of the chromosome (p or q)
+</p>
+
+<p>
+Position of the gene on the arm (cytogenetic bands). The position is dependent on the light and dark bands that appear on the chromosome when stained and is expressed as a two-digit number (one digit represents region and one represents band). Sometimes the digits are followed by a decimal point and one or more digits. These additional digits represent the distance from the centromere (increasing numeric value indicates farther distance from centromere). “Cen”, “ter”, and “tel” are also used to describe the position of the gene on the arm.
+</p>
+
+<p>
+Cen – close to the centromere
+Ter (terminus) – close to end of either the p or q arms
+Tel (telomere) – close to end of either the p or q arms
+</p>
+
+<p>
+Example
+Gene: Anaplastic lymphoma kinase receptor
+Chromosomal location: 2p23
+Location description: chromosome 2, p arm, position 23
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> Exercises</h3>
+<div class="outline-text-3" id="text-4-6">
+</div><div id="outline-container-sec-4-6-1" class="outline-4">
+<h4 id="sec-4-6-1"><span class="section-number-4">4.6.1</span> Exercise ENSEMBL</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<ul class="org-ul">
+<li><b>Question</b><br >
+The LCT gene product (lactase) has lactase activity. Mutations in this gene
+are associated with congenital lactase deficiency. Polymorphisms in this
+gene are associated with lactase persistence, in which intestinal lactase
+activity persists at childhood levels into adulthood.
+<ol class="org-ol">
+<li>Which is the Ensembl code for this gene? How many transcripts are reported
+for this gene? Are they all protein coding? Are they coded on the forward
+or reverse strand?
+</li>
+<li>Which is the Ensembl code of the longest transcript? Which is its CCDS code
+? And its Refseq codes ?
+</li>
+<li>Which are the chromosomal coordinates of this gene ? And its cytogenetic
+location ?
+</li>
+<li>Which is the protein sequence in the reference genome between positions 2: 135,829,587  and 2:135,829,598 ? Are there variants for these residues,
+which are annotated in Ensembl ? Which databases do they come from ? What
+are their amino acid positions, in the protein product from the LCT-201
+transcript ?
+</li>
+</ol>
+</li>
+
+<li><b>Answer</b><br >
+<ol class="org-ol">
+<li>The Ensembl code is <i>ENSG00000115850</i> . This gene has 2 transcripts.
+LCT-201 yes, LCT-202. Reverse strand for both.
+</li>
+
+<li>ENST00000264162.7 . CCDS2178 . NM<sub>002299.4</sub>
+</li>
+
+<li>Chromosome 2: 135,787,850-135,837,184 . q21.3
+</li>
+
+<li>LCT-201, yes, dbSNP, 801, 817
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> PDB</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+It is an archive of <i>experimentally determined</i> 3-dimensional structures of biological
+macro-molecules (Protein, nucleic acids, sugars).
+</p>
+
+<p>
+The PDB is a key in areas of structural biology, such as structural genomics.
+Most major scientific journals, and some funding agencies, now require
+scientists to submit their structure data to the PDB.
+</p>
+
+
+<p>
+<b>Content</b>
+</p>
+<ul class="org-ul">
+<li><i>X-ray Crystallography</i> (88%) : Strucure Factors data
+</li>
+<li><i>NMR Spectroscopy</i> (10%) : Restrains, Chemical Shifts
+</li>
+<li><i>Electron Microscopy</i> (1%) : Map in EMDB
+</li>
+</ul>
+
+<p>
+#+CAPTION : PDB History
+<img src="PDB/pdbhistory_2020-12-03_14-51-02.png" class="img-responsive" alt="pdbhistory_2020-12-03_14-51-02.png">
+</p>
+</div>
+
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Validation</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<b>Validation side</b><br >
+Method-specific Validation Task Forces have been convened to
+collect recommendations and develop consensus on additional validation that
+should be performed, and to identify software applications to perform validation
+tasks. There are tools available for the validation of X-ray Crystallography, NMR and
+Electron Microscopy data.
+</p>
+
+<p>
+There are many metrics used to validate the quality of a protein structure in the PDB file.
+</p>
+</div>
+
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> B-Factor (Temperature Factor)</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<p>
+The <i>B-factor</i> for each atom is given by: \(B = 8 \pi^{2} U^{2}\)
+where \(U^{2}\) is the <i>mean square displacement</i> of the atom.
+</p>
+
+<p>
+<i>Mean Square Displacement</i> : It is the most common measure of the spatial extent
+of random motion, and can be thought of as measuring the portion of the system
+&ldquo;explored&rdquo; by the random walker.
+</p>
+
+<p>
+Examples
+if B-factor = 15 A -&gt; mean square displacement \(\simeq 0.44 A\)
+if B-factor = 60 A -&gt; mean square displacement \(\simeq 0.87 A\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-1-2" class="outline-4">
+<h4 id="sec-5-1-2"><span class="section-number-4">5.1.2</span> Resolution</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+Resolution in X-ray crystallography: <span class="underline">the highest resolvable peak in the
+diffraction pattern.</span> If the proteins in the crystal are not perfectly aligned,
+but all slightly different, due to local flexibility or disorder, the
+diffraction pattern will not show such fine information.
+</p>
+
+<p>
+High-resolution structures, with resolution values of 1 Å or so, are highly
+ordered and it is easy to see every atom in the electron density map.
+</p>
+
+<p>
+Lower resolution structures, with resolution of 3 Å or higher, show only the
+basic contours of the protein chain, and the atomic structure must be
+inferred. Most crystallographic-defined structures of proteins fall in between
+these two extremes.
+</p>
+
+
+<figure>
+<p><img src="PDB/resolution-figure_2020-12-05_11-58-05.jpg" class="img-responsive" alt="resolution-figure_2020-12-05_11-58-05.jpg">
+</p>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-sec-5-1-3" class="outline-4">
+<h4 id="sec-5-1-3"><span class="section-number-4">5.1.3</span> R-value (x-ray only)</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<p>
+<i>R-value</i> is the measure of the quality of the atomic model obtained from the
+ crystallographic data. When solving the structure of a protein, the researcher
+ first builds an atomic model and then calculates a simulated diffraction
+ pattern based on that model.
+</p>
+
+<p>
+The R-value measures how well the simulated diffraction pattern matches the
+experimentally-observed diffraction pattern.
+</p>
+
+<ul class="org-ul">
+<li>A totally random set of atoms will give an R-value of about 0.63,
+</li>
+<li>a perfect fit would have a value of 0.
+</li>
+<li>Typical values are about 0.15-0.20.
+</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-5-1-4" class="outline-4">
+<h4 id="sec-5-1-4"><span class="section-number-4">5.1.4</span> R-free (x-ray only)</h4>
+<div class="outline-text-4" id="text-5-1-4">
+<p>
+There is one potential problem with using R-values to assess the quality of a
+  structure. The refinement process is often used to improve the atomic model of
+  a given structure to make it fit better to the experimental data and improve
+  the R-value. Unfortunately, this introduces bias into the process, since the
+  atomic model is used along with the diffraction pattern to calculate the
+  electron density.
+</p>
+
+<p>
+The use of the R-free value is a less biased way to look at this. Before refinement begins,
+about 10% of the experimental observations are removed from the data set. Then, refinement
+is performed using the remaining 90%. The R-free value is then calculated by seeing how well
+the model predicts the 10% that were not used in refinement.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-1-5" class="outline-4">
+<h4 id="sec-5-1-5"><span class="section-number-4">5.1.5</span> RSRz (x-ray only) :</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<p>
+The real-space R-value (RSR) is a measure of the quality of fit between a part of
+  an atomic model (in this case, one residue) and the data in real space (Jones et al., 1991).
+  The RSR Z-score (RSRZ) is a normalisation of RSR specific to a residue type and a resolution
+  bin (Kleywegt et al., 2004). RSRZ is calculated only for standard amino acids and
+  nucleotides in protein, DNA and RNA chains.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-1-6" class="outline-4">
+<h4 id="sec-5-1-6"><span class="section-number-4">5.1.6</span> Ramachandran Outliers (all methods)</h4>
+<div class="outline-text-4" id="text-5-1-6">
+<p>
+A residue is considered to be a Ramachandran plot outlier if the combination of
+  its φ and ψ torsion angles is unusual, as assessed by MolProbity (Chen et al.,
+  2010). The Ramachandran outlier score for an entry is calculated as the
+  percentage of Ramachandran outliers with respect to the total number of
+  residues in the entry for which the outlier assessment is available.
+</p>
+<ul class="org-ul">
+<li><b>Clashscore</b> (all methods): Atoms bumping into each other score
+</li>
+<li><b>Sidechain Outlier</b> (all methods): Protein sidechains mostly adopt certain (combinations of) preferred
+torsion angle values (called rotamers or rotameric conformers), much like their backbone
+torsion angles (as assessed in the Ramachandran analysis). MolProbity considers the
+sidechain conformation of a residue to be an outlier if its set of torsion angles is not
+similar to any preferred combination. The sidechain outlier score is calculated as the
+percentage of residues with an unusual sidechain conformation with respect to the total
+number of residues for which the assessment is available.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5-1-7" class="outline-4">
+<h4 id="sec-5-1-7"><span class="section-number-4">5.1.7</span> Percentile Slider</h4>
+<div class="outline-text-4" id="text-5-1-7">
+<p>
+The metrics shown in the &ldquo;slider&rdquo; graphic (see examples below) compare several important
+global quality indicators for this structure with those of previously deposited PDB entries.
+The comparison is carried out by calculation of the percentile rank, i.e. the percentage of
+entries that are equal or poorer than this structure in terms of a quality indicator. The
+global percentile ranks (black vertical boxes) are calculated with respect to all X-ray
+structures available in the PDB archive
+</p>
+
+<figure>
+<p><img src="PDB/validation_2020-12-05_15-46-08.png" class="img-responsive" alt="validation_2020-12-05_15-46-08.png">
+</p>
+</figure>
+
+
+<p>
+<b>Chain quality details graph</b><br >
+<img src="PDB/polymericchain_2020-12-05_16-23-51.png" class="img-responsive" alt="polymericchain_2020-12-05_16-23-51.png">
+</p>
+
+<p>
+There may be green, yellow, orange and red portions in the lower bar for each chain,
+indicating the fraction of residues that contain outliers for 0, 1, 2, ≥3 model-only
+validation criteria, respectively. A grey segment indicates residues present in the sample but
+not modelled in the final structure. If electron density outliers were present, there is an
+additional red bar above the lower bar, indicating the fraction of residues that are RSRZ
+outliers.
+</p>
+
+
+
+
+<p>
+<b>NMR validation</b><br >
+<img src="PDB/nmr_2020-12-05_16-04-30.png" class="img-responsive" alt="nmr_2020-12-05_16-04-30.png">
+</p>
+
+
+<p>
+<b>Crio-electron microscopy</b><br >
+From Neumann et al. 2018 : Recent advances in instrumentation and image-processing software
+have resulted in a resolution revolution in cryo-electron microscopy &#x2026;. However despite
+technical progress and hundreds of structures determined so far, development of standards
+assessing the agreement between the cryo-em map and the respective model as fallen behind.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> PDB File Format</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+The Protein Data Bank (pdb) file format is a textual file format describing the
+three-dimensional structures of molecules held in the Protein Data Bank. The pdb
+format accordingly provides for description and annotation of protein and
+nucleic acid structures including atomic coordinates, secondary structure
+assignments, as well as atomic connectivity. In addition experimental metadata
+are stored.
+</p>
+
+<ul class="org-ul">
+<li><i>HEADER</i>, <i>TITLE</i> and <i>AUTHOR</i> records provide information about the researchers who
+defined the structure; numerous other types of records are available to
+provide other types of information.
+</li>
+<li><i>REMARK</i> records can contain free-form annotation, but they also accommodate
+standardized information; for example, the REMARK 350 BIOMT records describe
+how to compute the coordinates of the experimentally observed multimer from
+those of the explicitly specified ones of a single repeating unit.
+</li>
+<li><i>SEQRES</i> records give the sequences of the three peptide chains (named A, B
+and C), which are very short in this example but usually span multiple lines.
+</li>
+<li><i>ATOM</i> records describe the coordinates of the atoms that are part of the
+protein.
+<ul class="org-ul">
+<li><i>Atom serial number</i>
+</li>
+<li><i>Atom name</i>
+</li>
+<li><i>Residue name</i>
+</li>
+<li><i>Chain identifier</i>
+</li>
+<li><i>Residue sequence number</i>
+</li>
+</ul>
+<ul class="org-ul">
+<li>the first three floating point numbers are its <i>x</i>, <i>y</i> and <i>z</i>
+<i>coordinates</i> and are in units of <i>Ångströms</i>.
+</li>
+<li>The next three columns are the <i>occupancy</i>, <i>temperature factor</i>, and the
+<i>element name</i>, respectively.
+</li>
+</ul>
+</li>
+<li><i>HETATM</i> records describe coordinates of hetero-atoms, that is those atoms which
+are not part of the protein molecule.
+</li>
+</ul>
+
+
+
+<p>
+#+CAPTION : Example PDB file
+</p>
+<pre class="example">
+HEADER    EXTRACELLULAR MATRIX                    22-JAN-98   1A3I
+TITLE     X-RAY CRYSTALLOGRAPHIC DETERMINATION OF A COLLAGEN-LIKE
+TITLE    2 PEPTIDE WITH THE REPEATING SEQUENCE (PRO-PRO-GLY)
+...
+EXPDTA    X-RAY DIFFRACTION
+AUTHOR    R.Z.KRAMER,L.VITAGLIANO,J.BELLA,R.BERISIO,L.MAZZARELLA,
+AUTHOR   2 B.BRODSKY,A.ZAGARI,H.M.BERMAN
+...
+REMARK 350 BIOMOLECULE: 1
+REMARK 350 APPLY THE FOLLOWING TO CHAINS: A, B, C
+REMARK 350   BIOMT1   1  1.000000  0.000000  0.000000        0.00000
+REMARK 350   BIOMT2   1  0.000000  1.000000  0.000000        0.00000
+...
+SEQRES   1 A    9  PRO PRO GLY PRO PRO GLY PRO PRO GLY
+SEQRES   1 B    6  PRO PRO GLY PRO PRO GLY
+SEQRES   1 C    6  PRO PRO GLY PRO PRO GLY
+...
+ATOM      1  N   PRO A   1       8.316  21.206  21.530  1.00 17.44           N
+ATOM      2  CA  PRO A   1       7.608  20.729  20.336  1.00 17.44           C
+ATOM      3  C   PRO A   1       8.487  20.707  19.092  1.00 17.44           C
+ATOM      4  O   PRO A   1       9.466  21.457  19.005  1.00 17.44           O
+ATOM      5  CB  PRO A   1       6.460  21.723  20.211  1.00 22.26           C
+...
+HETATM  130  C   ACY   401       3.682  22.541  11.236  1.00 21.19           C
+HETATM  131  O   ACY   401       2.807  23.097  10.553  1.00 21.19           O
+HETATM  132  OXT ACY   401       4.306  23.101  12.291  1.00 21.19           O
+...
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> NCBI</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<b>NCBI: the National Center for Biotechnology Information</b> , created in 1988 as
+part of National Library of Medicine (NLM) at the National Institute of
+Health(NIH)
+</p>
+
+<p>
+The NCBI houses a series of databases relevant to biotechnology and
+biomedicine and is an important resource for bioinformatics tools and services.
+</p>
+<ul class="org-ul">
+<li><i>GenBank</i> for Dna sequences
+</li>
+<li><i>PubMed</i> for biomedical literature
+</li>
+<li><i>BLAST</i> BLAST is an algorithm used for calculating sequence similarity between
+biological sequences such as nucleotide sequences of DNA and amino acid
+sequences of proteins.
+</li>
+<li><i>CDD : Conserved Domains Database</i> includes domains curated at NCBI and data
+imported from external sources (PFAM, SMART, COGs, TIGRFAM)
+
+<figure>
+<p><img src="imgs/NCBI/2021-02-05_16-36-31_screenshot.png" class="img-responsive" alt="2021-02-05_16-36-31_screenshot.png">
+</p>
+</figure>
+</li>
+</ul>
+</div>
+
+
+
+
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> GenBank</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+The GenBank sequence database is an open access, annotated collection of all publicly
+available nucleotide sequences and their protein translations
+</p>
+
+<p>
+<b>Submission</b><br >
+</p>
+<ul class="org-ul">
+<li>Only original sequences can be submitted to GenBank. Direct submissions are made to GenBank
+via a Web-based form, or the stand-alone submission program, Sequin.
+</li>
+<li>Upon receipt of a sequence submission, the GenBank staff examines the
+originality of the data and assigns an accession number to the sequence and
+performs quality assurance checks.
+</li>
+<li>The submissions are then released to the public database, where the entries
+are retrievable by Entrez or downloadable by FTP.
+</li>
+</ul>
+</div>
+
+
+<div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> GenBank Record Sample</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+<b>Structure</b>
+</p>
+<ul class="org-ul">
+<li>Header
+</li>
+<li>Features
+</li>
+<li>Sequence
+</li>
+</ul>
+
+
+<p>
+Most important <b>fields</b>:
+</p>
+<ul class="org-ul">
+<li>Accession code (eg. U49845): Stable, Reportable and Universal identifier
+</li>
+<li>Version : tracks changes in sequence
+</li>
+<li>CDS (Coding Sequence Region) : region of nucleotides that corresponds with the sequence of
+amino acids in a protein (includes start and stop codons). This field include also the
+respective translation protein. Annotation on the quality of the CDS can be
+present.(experimental/not experimental)
+</li>
+</ul>
+
+
+<pre class="example">
+LOCUS       SCU49845     5028 bp    DNA             PLN       21-JUN-1999
+DEFINITION  Saccharomyces cerevisiae TCP1-beta gene, partial cds, and Axl2p
+            (AXL2) and Rev7p (REV7) genes, complete cds.
+ACCESSION   U49845
+VERSION     U49845.1  GI:1293613
+KEYWORDS    .
+SOURCE      Saccharomyces cerevisiae (baker's yeast)
+  ORGANISM  Saccharomyces cerevisiae
+            Eukaryota; Fungi; Ascomycota; Saccharomycotina; Saccharomycetes;
+            Saccharomycetales; Saccharomycetaceae; Saccharomyces.
+REFERENCE   1  (bases 1 to 5028)
+  AUTHORS   Torpey,L.E., Gibbs,P.E., Nelson,J. and Lawrence,C.W.
+  TITLE     Cloning and sequence of REV7, a gene whose function is required for
+            DNA damage-induced mutagenesis in Saccharomyces cerevisiae
+  JOURNAL   Yeast 10 (11), 1503-1509 (1994)
+  PUBMED    7871890
+REFERENCE   2  (bases 1 to 5028)
+  AUTHORS   Roemer,T., Madden,K., Chang,J. and Snyder,M.
+  TITLE     Selection of axial growth sites in yeast requires Axl2p, a novel
+            plasma membrane glycoprotein
+  JOURNAL   Genes Dev. 10 (7), 777-793 (1996)
+  PUBMED    8846915
+REFERENCE   3  (bases 1 to 5028)
+  AUTHORS   Roemer,T.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (22-FEB-1996) Terry Roemer, Biology, Yale University, New
+            Haven, CT, USA
+FEATURES             Location/Qualifiers
+     source          1..5028
+                     /organism="Saccharomyces cerevisiae"
+                     /db_xref="taxon:4932"
+                     /chromosome="IX"
+                     /map="9"
+     CDS             &lt;1..206
+                     /codon_start=3
+                     /product="TCP1-beta"
+                     /protein_id="AAA98665.1"
+                     /db_xref="GI:1293614"
+                     /translation="SSIYNGISTSGLDLNNGTIADMRQLGIVESYKLKRAVVSSASEA
+                     AEVLLRVDNIIRARPRTANRQHM"
+     gene            687..3158
+                     /gene="AXL2"
+     CDS             687..3158
+                     /gene="AXL2"
+                     /note="plasma membrane glycoprotein"
+                     /codon_start=1
+                     /function="required for axial budding pattern of S.
+                     cerevisiae"
+                     /product="Axl2p"
+                     /protein_id="AAA98666.1"
+                     /db_xref="GI:1293615"
+                     /translation="MTQLQISLLLTATISLLHLVVATPYEAYPIGKQYPPVARVNESF
+                     TFQISNDTYKSSVDKTAQITYNCFDLPSWLSFDSSSRTFSGEPSSDLLSDANTTLYFN
+                     VILEGTDSADSTSLNNTYQFVVTNRPSISLSSDFNLLALLKNYGYTNGKNALKLDPNE
+                     VFNVTFDRSMFTNEESIVSYYGRSQLYNAPLPNWLFFDSGELKFTGTAPVINSAIAPE
+                     TSYSFVIIATDIEGFSAVEVEFELVIGAHQLTTSIQNSLIINVTDTGNVSYDLPLNYV
+                     YLDDDPISSDKLGSINLLDAPDWVALDNATISGSVPDELLGKNSNPANFSVSIYDTYG
+                     DVIYFNFEVVSTTDLFAISSLPNINATRGEWFSYYFLPSQFTDYVNTNVSLEFTNSSQ
+                     DHDWVKFQSSNLTLAGEVPKNFDKLSLGLKANQGSQSQELYFNIIGMDSKITHSNHSA
+                     NATSTRSSHHSTSTSSYTSSTYTAKISSTSAAATSSAPAALPAANKTSSHNKKAVAIA
+                     CGVAIPLGVILVALICFLIFWRRRRENPDDENLPHAISGPDLNNPANKPNQENATPLN
+                     NPFDDDASSYDDTSIARRLAALNTLKLDNHSATESDISSVDEKRDSLSGMNTYNDQFQ
+                     SQSKEELLAKPPVQPPESPFFDPQNRSSSVYMDSEPAVNKSWRYTGNLSPVSDIVRDS
+                     YGSQKTVDTEKLFDLEAPEKEKRTSRDVTMSSLDPWNSNISPSPVRKSVTPSPYNVTK
+                     HRNRHLQNIQDSQSGKNGITPTTMSTSSSDDFVPVKDGENFCWVHSMEPDRRPSKKRL
+                     VDFSNKSNVNVGQVKDIHGRIPEML"
+     gene            complement(3300..4037)
+                     /gene="REV7"
+     CDS             complement(3300..4037)
+                     /gene="REV7"
+                     /codon_start=1
+                     /product="Rev7p"
+                     /protein_id="AAA98667.1"
+                     /db_xref="GI:1293616"
+                     /translation="MNRWVEKWLRVYLKCYINLILFYRNVYPPQSFDYTTYQSFNLPQ
+                     FVPINRHPALIDYIEELILDVLSKLTHVYRFSICIINKKNDLCIEKYVLDFSELQHVD
+                     KDDQIITETEVFDEFRSSLNSLIMHLEKLPKVNDDTITFEAVINAIELELGHKLDRNR
+                     RVDSLEEKAEIERDSNWVKCQEDENLPDNNGFQPPKIKLTSLVGSDVGPLIIHQFSEK
+                     LISGDDKILNGVYSQYEEGESIFGSLF"
+ORIGIN
+        1 gatcctccat atacaacggt atctccacct caggtttaga tctcaacaac ggaaccattg
+       61 ccgacatgag acagttaggt atcgtcgaga gttacaagct aaaacgagca gtagtcagct
+      121 ctgcatctga agccgctgaa gttctactaa gggtggataa catcatccgt gcaagaccaa
+      181 gaaccgccaa tagacaacat atgtaacata tttaggatat acctcgaaaa taataaaccg
+      241 ccacactgtc attattataa ttagaaacag aacgcaaaaa ttatccacta tataattcaa
+      301 agacgcgaaa aaaaaagaac aacgcgtcat agaacttttg gcaattcgcg tcacaaataa
+      361 attttggcaa cttatgtttc ctcttcgagc agtactcgag ccctgtctca agaatgtaat
+      421 aatacccatc gtaggtatgg ttaaagatag catctccaca acctcaaagc tccttgccga
+      481 gagtcgccct cctttgtcga gtaattttca cttttcatat gagaacttat tttcttattc
+      541 tttactctca catcctgtag tgattgacac tgcaacagcc accatcacta gaagaacaga
+      601 acaattactt aatagaaaaa ttatatcttc ctcgaaacga tttcctgctt ccaacatcta
+      661 cgtatatcaa gaagcattca cttaccatga cacagcttca gatttcatta ttgctgacag
+      721 ctactatatc actactccat ctagtagtgg ccacgcccta tgaggcatat cctatcggaa
+      781 aacaataccc cccagtggca agagtcaatg aatcgtttac atttcaaatt tccaatgata
+      841 cctataaatc gtctgtagac aagacagctc aaataacata caattgcttc gacttaccga
+      901 gctggctttc gtttgactct agttctagaa cgttctcagg tgaaccttct tctgacttac
+      961 tatctgatgc gaacaccacg ttgtatttca atgtaatact cgagggtacg gactctgccg
+     1021 acagcacgtc tttgaacaat acataccaat ttgttgttac aaaccgtcca tccatctcgc
+     1081 tatcgtcaga tttcaatcta ttggcgttgt taaaaaacta tggttatact aacggcaaaa
+     1141 acgctctgaa actagatcct aatgaagtct tcaacgtgac ttttgaccgt tcaatgttca
+     1201 ctaacgaaga atccattgtg tcgtattacg gacgttctca gttgtataat gcgccgttac
+     1261 ccaattggct gttcttcgat tctggcgagt tgaagtttac tgggacggca ccggtgataa
+     1321 actcggcgat tgctccagaa acaagctaca gttttgtcat catcgctaca gacattgaag
+     1381 gattttctgc cgttgaggta gaattcgaat tagtcatcgg ggctcaccag ttaactacct
+     1441 ctattcaaaa tagtttgata atcaacgtta ctgacacagg taacgtttca tatgacttac
+     1501 ctctaaacta tgtttatctc gatgacgatc ctatttcttc tgataaattg ggttctataa
+     1561 acttattgga tgctccagac tgggtggcat tagataatgc taccatttcc gggtctgtcc
+     1621 cagatgaatt actcggtaag aactccaatc ctgccaattt ttctgtgtcc atttatgata
+     1681 cttatggtga tgtgatttat ttcaacttcg aagttgtctc cacaacggat ttgtttgcca
+     1741 ttagttctct tcccaatatt aacgctacaa ggggtgaatg gttctcctac tattttttgc
+     1801 cttctcagtt tacagactac gtgaatacaa acgtttcatt agagtttact aattcaagcc
+     1861 aagaccatga ctgggtgaaa ttccaatcat ctaatttaac attagctgga gaagtgccca
+     1921 agaatttcga caagctttca ttaggtttga aagcgaacca aggttcacaa tctcaagagc
+     1981 tatattttaa catcattggc atggattcaa agataactca ctcaaaccac agtgcgaatg
+     2041 caacgtccac aagaagttct caccactcca cctcaacaag ttcttacaca tcttctactt
+     2101 acactgcaaa aatttcttct acctccgctg ctgctacttc ttctgctcca gcagcgctgc
+     2161 cagcagccaa taaaacttca tctcacaata aaaaagcagt agcaattgcg tgcggtgttg
+     2221 ctatcccatt aggcgttatc ctagtagctc tcatttgctt cctaatattc tggagacgca
+     2281 gaagggaaaa tccagacgat gaaaacttac cgcatgctat tagtggacct gatttgaata
+     2341 atcctgcaaa taaaccaaat caagaaaacg ctacaccttt gaacaacccc tttgatgatg
+     2401 atgcttcctc gtacgatgat acttcaatag caagaagatt ggctgctttg aacactttga
+     2461 aattggataa ccactctgcc actgaatctg atatttccag cgtggatgaa aagagagatt
+     2521 ctctatcagg tatgaataca tacaatgatc agttccaatc ccaaagtaaa gaagaattat
+     2581 tagcaaaacc cccagtacag cctccagaga gcccgttctt tgacccacag aataggtctt
+     2641 cttctgtgta tatggatagt gaaccagcag taaataaatc ctggcgatat actggcaacc
+     2701 tgtcaccagt ctctgatatt gtcagagaca gttacggatc acaaaaaact gttgatacag
+     2761 aaaaactttt cgatttagaa gcaccagaga aggaaaaacg tacgtcaagg gatgtcacta
+     2821 tgtcttcact ggacccttgg aacagcaata ttagcccttc tcccgtaaga aaatcagtaa
+     2881 caccatcacc atataacgta acgaagcatc gtaaccgcca cttacaaaat attcaagact
+     2941 ctcaaagcgg taaaaacgga atcactccca caacaatgtc aacttcatct tctgacgatt
+     3001 ttgttccggt taaagatggt gaaaattttt gctgggtcca tagcatggaa ccagacagaa
+     3061 gaccaagtaa gaaaaggtta gtagattttt caaataagag taatgtcaat gttggtcaag
+     3121 ttaaggacat tcacggacgc atcccagaaa tgctgtgatt atacgcaacg atattttgct
+     3181 taattttatt ttcctgtttt attttttatt agtggtttac agatacccta tattttattt
+     3241 agtttttata cttagagaca tttaatttta attccattct tcaaatttca tttttgcact
+     3301 taaaacaaag atccaaaaat gctctcgccc tcttcatatt gagaatacac tccattcaaa
+     3361 attttgtcgt caccgctgat taatttttca ctaaactgat gaataatcaa aggccccacg
+     3421 tcagaaccga ctaaagaagt gagttttatt ttaggaggtt gaaaaccatt attgtctggt
+     3481 aaattttcat cttcttgaca tttaacccag tttgaatccc tttcaatttc tgctttttcc
+     3541 tccaaactat cgaccctcct gtttctgtcc aacttatgtc ctagttccaa ttcgatcgca
+     3601 ttaataactg cttcaaatgt tattgtgtca tcgttgactt taggtaattt ctccaaatgc
+     3661 ataatcaaac tatttaagga agatcggaat tcgtcgaaca cttcagtttc cgtaatgatc
+     3721 tgatcgtctt tatccacatg ttgtaattca ctaaaatcta aaacgtattt ttcaatgcat
+     3781 aaatcgttct ttttattaat aatgcagatg gaaaatctgt aaacgtgcgt taatttagaa
+     3841 agaacatcca gtataagttc ttctatatag tcaattaaag caggatgcct attaatggga
+     3901 acgaactgcg gcaagttgaa tgactggtaa gtagtgtagt cgaatgactg aggtgggtat
+     3961 acatttctat aaaataaaat caaattaatg tagcatttta agtataccct cagccacttc
+     4021 tctacccatc tattcataaa gctgacgcaa cgattactat tttttttttc ttcttggatc
+     4081 tcagtcgtcg caaaaacgta taccttcttt ttccgacctt ttttttagct ttctggaaaa
+     4141 gtttatatta gttaaacagg gtctagtctt agtgtgaaag ctagtggttt cgattgactg
+     4201 atattaagaa agtggaaatt aaattagtag tgtagacgta tatgcatatg tatttctcgc
+     4261 ctgtttatgt ttctacgtac ttttgattta tagcaagggg aaaagaaata catactattt
+     4321 tttggtaaag gtgaaagcat aatgtaaaag ctagaataaa atggacgaaa taaagagagg
+     4381 cttagttcat cttttttcca aaaagcaccc aatgataata actaaaatga aaaggatttg
+     4441 ccatctgtca gcaacatcag ttgtgtgagc aataataaaa tcatcacctc cgttgccttt
+     4501 agcgcgtttg tcgtttgtat cttccgtaat tttagtctta tcaatgggaa tcataaattt
+     4561 tccaatgaat tagcaatttc gtccaattct ttttgagctt cttcatattt gctttggaat
+     4621 tcttcgcact tcttttccca ttcatctctt tcttcttcca aagcaacgat ccttctaccc
+     4681 atttgctcag agttcaaatc ggcctctttc agtttatcca ttgcttcctt cagtttggct
+     4741 tcactgtctt ctagctgttg ttctagatcc tggtttttct tggtgtagtt ctcattatta
+     4801 gatctcaagt tattggagtc ttcagccaat tgctttgtat cagacaattg actctctaac
+     4861 ttctccactt cactgtcgag ttgctcgttt ttagcggaca aagatttaat ctcgttttct
+     4921 ttttcagtgt tagattgctc taattctttg agctgttctc tcagctcctc atatttttct
+     4981 tgccatgact cagattctaa ttttaagcta ttcaatttct ctttgatc
+//
+</pre>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> Search field restrictions</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+We can add the following field restrictions keywords when we search in GenBank
+</p>
+
+<ul class="org-ul">
+<li><b>[Title]</b> : Definition line glyceraldehyde 3
+phosphate dehydrogenase[Title]
+</li>
+<li><b>[Organism]</b> : NCBI&rsquo;s taxonomy mouse[organism];
+green plants[organism];
+</li>
+<li><b>[Properties]</b>: molecule type, location, database source
+biomol<sub>mrna</sub>[properties]; biomol<sub>genomic</sub>[properties];
+gene<sub>in</sub><sub>mitochondrion</sub>[properties]; srcdb pdb[properties]
+</li>
+<li><b>[Filter]</b>: subsets of data, Entrez links
+all[filter]; nucleotide mapview[filter]; nucleotide omim[filter]
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-1-3" class="outline-4">
+<h4 id="sec-6-1-3"><span class="section-number-4">6.1.3</span> Division organization</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+Records are divided into two types of <i>divisions</i>
+</p>
+
+<p>
+<b>12 Traditional Divisions</b><br >
+</p>
+<ul class="org-ul">
+<li>PRI Primate
+</li>
+<li>PLN Plant and Fungal
+</li>
+<li>BCT Bacterial and Archeal
+</li>
+<li>INV Invertebrate
+</li>
+<li>ROD Rodent
+</li>
+<li>VRL Viral
+</li>
+<li>VRT Other Vertebrate
+</li>
+<li>MAM Mammalian
+</li>
+<li>PHG Phage
+</li>
+<li>SYN Synthetic (cloning vectors)
+</li>
+<li>ENV Environmental Samples
+</li>
+<li>UNA Unannotated
+</li>
+</ul>
+
+<p>
+<span class="underline">Features</span> :
+</p>
+<ul class="org-ul">
+<li>Direct Submissions
+</li>
+<li>Accurate
+</li>
+<li>Well characterized
+</li>
+</ul>
+
+<p>
+<b>BULK Divisions</b><br >
+</p>
+<ul class="org-ul">
+<li>EST Expressed Sequence Tag
+</li>
+<li>GSS Genome Survey Sequence
+</li>
+<li>HTG High Throughput Genomic
+</li>
+<li>STS Sequence Tagged Site
+</li>
+<li>HTC High Throughput cDNA
+</li>
+<li>PAT Patent
+</li>
+</ul>
+
+<p>
+<span class="underline">Features</span>:
+</p>
+<ul class="org-ul">
+<li>Batch Submission
+</li>
+<li>Inaccurate
+</li>
+<li>Poorly characterized
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> RefSeq</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+The Reference Sequence (RefSeq) database is an open access, annotated and curated
+collection of publicly available nucleotide sequences (DNA, RNA) and their protein products.
+This database is built by National Center for Biotechnology Information (NCBI), and, unlike
+GenBank, <span class="underline">provides only a single record for each natural biological molecule</span> (i.e. DNA, RNA or
+protein) for major organisms ranging from viruses to bacteria to eukaryotes.
+</p>
+
+<p>
+For each model organism, RefSeq aims to provide separate and linked records for the genomic
+DNA, the gene transcripts, and the proteins arising from those transcripts. RefSeq is limited
+to major organisms for which sufficient data are available (more than 66,000 distinct “named”
+organisms as of September 2011), while GenBank includes sequences for any organism
+submitted
+</p>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> Difference RefSeq vs GenBank</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Genbank</th>
+<th scope="col" class="text-left">RefSeq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">Not Curated</td>
+<td class="text-left">Curated</td>
+</tr>
+
+<tr>
+<td class="text-left">Author submits</td>
+<td class="text-left">NCBI creates from genbank data</td>
+</tr>
+
+<tr>
+<td class="text-left">Multiple Records for same loci</td>
+<td class="text-left">Single records for each molecule of major organisms</td>
+</tr>
+
+<tr>
+<td class="text-left">No limit of species</td>
+<td class="text-left">Limited number of organisms</td>
+</tr>
+
+<tr>
+<td class="text-left">Akin to primary literature</td>
+<td class="text-left">Akin to review articles</td>
+</tr>
+
+<tr>
+<td class="text-left">&#xa0;</td>
+<td class="text-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<figure>
+<p><img src="NCBI/sw_2020-12-15_17-15-34.png" class="img-responsive" alt="sw_2020-12-15_17-15-34.png">
+</p>
+</figure>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2"><span class="section-number-4">6.2.2</span> RefSeq Categories</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Category</th>
+<th scope="col" class="text-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">NC</td>
+<td class="text-left">Complete genomic molecules</td>
+</tr>
+
+<tr>
+<td class="text-left">NG</td>
+<td class="text-left">Incomplete genomic region</td>
+</tr>
+
+<tr>
+<td class="text-left">NM</td>
+<td class="text-left">mRNA</td>
+</tr>
+
+<tr>
+<td class="text-left">NR</td>
+<td class="text-left">ncRNA</td>
+</tr>
+
+<tr>
+<td class="text-left">NP</td>
+<td class="text-left">Protein</td>
+</tr>
+
+<tr>
+<td class="text-left">XM</td>
+<td class="text-left">predicted mRNA model</td>
+</tr>
+
+<tr>
+<td class="text-left">XR</td>
+<td class="text-left">predicted ncRNA model</td>
+</tr>
+
+<tr>
+<td class="text-left">XP</td>
+<td class="text-left">predicted Protein model (eukaryotic sequences)</td>
+</tr>
+
+<tr>
+<td class="text-left">WP</td>
+<td class="text-left">predicted Protein model (prokaryotic sequences)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-2-3" class="outline-4">
+<h4 id="sec-6-2-3"><span class="section-number-4">6.2.3</span> RefSeq Status</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<ul class="org-ul">
+<li>Model : No individual review
+</li>
+<li>Inferred : Predicted by genome sequence analysis
+</li>
+<li>Predicted : No individual review, some aspect predicted
+</li>
+<li>Reviewed : Reviewed by NCBI staff
+</li>
+<li>Validated : No final review, initial review performed
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Gene</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Gene supplies gene-specific connections in the nexus of map, sequence,
+expression, structure, function, citation, and homology data.
+</p>
+
+<p>
+Unique identifiers are assigned to genes with defining sequences, genes with
+known map positions, and genes inferred from phenotypic information. These gene
+identifiers are used throughout NCBI&rsquo;s databases and tracked through updates of
+annotation.
+</p>
+</div>
+
+<div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1"><span class="section-number-4">6.3.1</span> NCBI Record</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+A NCBI Gene record may include:
+</p>
+<ul class="org-ul">
+<li>nomenclature,
+</li>
+<li>Reference Sequences (RefSeqs),
+</li>
+<li>maps,
+</li>
+<li>pathways,
+</li>
+<li>variations,
+</li>
+<li>phenotypes,
+</li>
+<li>links to genome-, phenotype-, and locus-specific resources worldwide
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3-2" class="outline-4">
+<h4 id="sec-6-3-2"><span class="section-number-4">6.3.2</span> NCBI Gene Query</h4>
+<div class="outline-text-4" id="text-6-3-2">
+
+<figure>
+<p><img src="imgs/NCBI/2021-02-05_17-36-33_screenshot.png" class="img-responsive" alt="2021-02-05_17-36-33_screenshot.png">
+</p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> OMIM (Online Mendelian Inheritance in Man)</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+The full-text overviews in OMIM contain information on all known
+mendelian disorders and over 16,000 genes. It is updated daily.
+</p>
+<ul class="org-ul">
+<li>OMIM focuses on the relationship between phenotype and genotype.
+</li>
+<li>This database was initiated in the early 1960s by Dr. Victor A. McKusick as a
+catalog of mendelian traits and disorders (Mendelian Inheritance in Man –
+MIM). The online version, OMIM, was created in 1985 by a collaboration between
+the NLM and the Johns Hopkins University.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> dbSNP</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+The database contains actually a range of molecular variations:
+</p>
+<ol class="org-ol">
+<li>SNPs
+</li>
+<li>short deletion and insertion polymorphisms (indels/DIPs)
+</li>
+<li>microsatellite markers or Short Tandem Repeats (STRs)
+</li>
+<li>multinucleotide polymorphisms (MNPs)
+</li>
+</ol>
+
+
+<p>
+<b>Dataflow</b><br >
+</p>
+
+
+<figure>
+<p><img src="imgs/NCBI/2021-02-05_17-45-37_screenshot.png" class="img-responsive" alt="2021-02-05_17-45-37_screenshot.png">
+</p>
+</figure>
+</div>
+
+
+<div id="outline-container-sec-6-5-1" class="outline-4">
+<h4 id="sec-6-5-1"><span class="section-number-4">6.5.1</span> GWAS</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<p>
+Sequence variations might be responsible for individual phenotypic characteristics,
+including a person&rsquo;s propensity toward complex disorders such as heart disease and cancer.
+</p>
+
+
+
+<figure>
+<p><img src="imgs/NCBI/2021-02-05_17-46-17_screenshot.png" class="img-responsive" alt="2021-02-05_17-46-17_screenshot.png">
+</p>
+</figure>
+
+<p>
+A Manhattan plot depicting several strongly associated risk loci. Each dot
+represents a SNP, X-axis: genomic location, Y-axis: association level.
+</p>
+
+<p>
+A GWA study investigating microcirculation, the tops indicates genetic variants that
+more often are found in individuals with constrictions in small blood vessels.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-6" class="outline-3">
+<h3 id="sec-6-6"><span class="section-number-3">6.6</span> Nucleotide</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+The Nucleotide database is a collection of sequences from several sources,
+including GenBank, RefSeq, TPA and PDB. Genome, gene and transcript sequence
+data provide the foundation for biomedical research and discovery.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-7" class="outline-3">
+<h3 id="sec-6-7"><span class="section-number-3">6.7</span> Exercises</h3>
+<div class="outline-text-3" id="text-6-7">
+</div><div id="outline-container-sec-6-7-1" class="outline-4">
+<h4 id="sec-6-7-1"><span class="section-number-4">6.7.1</span> Exercise 1</h4>
+<div class="outline-text-4" id="text-6-7-1">
+<ul class="org-ul">
+<li><b>Question</b><br >
+</li>
+</ul>
+<p>
+In NCBI &ldquo;Nucleotide&rdquo;, find all entries
+</p>
+
+<p>
+containing:                  mRNA sequences
+</p>
+
+<p>
+coding for:                   chymotrypsin and trypsin  (use the field: &ldquo;Protein name&rdquo;)
+</p>
+
+<p>
+from:                             all organisms except Plant, Fungal, and Viral
+</p>
+
+<p>
+which have been:         reviewed or validated in RefSeq.
+</p>
+
+<p>
+(Notice that in NCBI searches the boolean have to be uppercase :
+</p>
+
+<p>
+&ldquo;AND&rdquo;, &ldquo;OR&rdquo; , &ldquo;NOT&rdquo;)
+</p>
+
+
+
+
+<p>
+How many entries have you found ?
+</p>
+
+
+<ul class="org-ul">
+<li><b>Answer</b><br >
+
+<pre class="example">
+  "biomol mrna"[Properties] AND ("trypsin"[Protein Name] OR "chymotrypsin"[Protein Name]) NOT ("gbdiv pln"[Properties] OR "gbdiv vrl"[Properties]) AND ("srcdb refseq reviewed"[Properties] OR "srcdb refseq validated"[Properties])
+</pre>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-7-2" class="outline-4">
+<h4 id="sec-6-7-2"><span class="section-number-4">6.7.2</span> Exercise 2</h4>
+<div class="outline-text-4" id="text-6-7-2">
+<ul class="org-ul">
+<li><b>Question</b><br >
+In the Gene database, look for the gene coding for the NP<sub>073728</sub> protein.
+
+<ol class="org-ol">
+<li>Which is its cytogenetic location ?
+</li>
+
+<li>In which biological process is the protein involved, according to the GO classification, TAS code ?
+</li>
+
+<li>What is the RefSeq Accession Number of the mRNA molecule coding for it?  Is it a reviewed entry?
+</li>
+</ol>
+</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><b>Answer</b><br >
+
+<ol class="org-ol">
+<li>Location: 2q37.3
+</li>
+<li>circadian rhythm       GO:0007623
+</li>
+<li>NM<sub>022817.3</sub> Reviewed
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6-7-3" class="outline-4">
+<h4 id="sec-6-7-3"><span class="section-number-4">6.7.3</span> Exercise 3</h4>
+<div class="outline-text-4" id="text-6-7-3">
+<ul class="org-ul">
+<li><b>Question</b>
+<ol class="org-ol">
+<li>How many genes in the «Gene» database have as source the species Homo sapiens ?
+</li>
+<li>How many of them are «protein coding» ?
+</li>
+<li>How many are «pseudo-genes» ?
+</li>
+<li>How many are «non-coding RNA» ?
+</li>
+</ol>
+</li>
+
+<li><b>Answer</b>
+<ol class="org-ol">
+<li>61745 - &ldquo;human&rdquo;[Organism]
+</li>
+<li>19786 - (&ldquo;human&rdquo;[Organism]) AND &ldquo;genetype protein coding&rdquo;[Properties]
+</li>
+<li>16552 - (&ldquo;human&rdquo;[Organism]) AND &ldquo;genetype pseudo&rdquo;[Properties]
+</li>
+<li>17455 - (&ldquo;genetype ncrna&rdquo;[Properties]) AND &ldquo;human&rdquo;[Organism]
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Experimental Methods</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> X-ray Crystallography</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+<i>X-ray crystallography</i> (XRC) is the experimental science determining the atomic and molecular
+structure of a crystal, in which the crystalline structure causes a beam of incident X-rays to
+diffract into many specific directions. By measuring the angles and intensities of these
+diffracted beams, a crystallographer can produce a three-dimensional picture of the density of
+electrons within the crystal. From this electron density, the mean positions of the atoms in
+the crystal can be determined, as well as their chemical bonds, their crystallographic
+disorder, and various other information.
+</p>
+
+<p>
+#+Xray Cristallography to structure scheme
+<img src="PDB/crystellographyschemefull_2020-12-03_17-02-06.png" class="img-responsive" alt="crystellographyschemefull_2020-12-03_17-02-06.png">
+</p>
+
+
+<ol class="org-ol">
+<li><b>Crystals Formation</b> : A crystal is a three-dimensional regular structure formed by many
+identical molecules. Proteins are large objects with irregular shapes and it is impossible
+to pack them into a crystal without forming large holes or channels between the individual
+molecules.
+
+<p>
+The formation of a crystal strongly depends on a number of different parameters, such as
+pH, temperature, protein concentration. Well ordered protein crystals diffract X-rays.
+</p>
+
+<p>
+The atoms in a crystal are not static, but oscillate about their mean positions, usually by
+less than a few tenths of an angstrom. X-ray crystallography allows measuring the size of
+these oscillations.
+</p>
+
+<p>
+Due to the ordered molecular packing, the crystal behaves as a very powerful amplifier
+</p>
+</li>
+
+<li><b>Why X-rays</b> : In order to measure something accurately you need the appropriate ruler. The
+X-rays wavelength[10 Å and 0.01 Å] has the same order of magnitude of a covalent bond. The
+type of X-rays used by crystallographers are ~ 0.5 to 1.5 Å long.
+</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> NMR Spectroscopy</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+<b>Nuclear magnetic resonance spectroscopy</b>, most commonly known as NMR spectroscopy or magnetic
+resonance spectroscopy (MRS), is a spectroscopic technique to observe local magnetic fields
+around atomic nuclei.
+</p>
+
+<ul class="org-ul">
+<li>The sample is placed in a magnetic field and the NMR signal is produced by excitation of the
+nuclei sample with <i>radio waves</i> into <i>nuclear magnetic resonance</i>, which is detected with
+sensitive radio receivers.
+</li>
+<li>The intramolecular magnetic field around an atom in a molecule changes the resonance
+frequency, thus giving access to details of the electronic structure of a molecule and its
+individual functional groups.
+</li>
+
+<li>A distinctive set of observed resonances may be analyzed to give a list of atomic nuclei
+that are close to one another, and to characterize the local conformation of atoms that are
+bonded together. This list of restraints is then used to build models of the protein that
+shows the location of each atom. The technique is currently limited to small or medium
+proteins, since large proteins present problems with overlapping peaks in the NMR spectra.
+</li>
+</ul>
+
+
+<p>
+<b>Variation among models</b><br >
+</p>
+<ul class="org-ul">
+<li>can represent actual flexibility and thermal motion
+</li>
+<li>can mean uncertainty in the atomic positions
+</li>
+</ul>
+
+<p>
+To distinguish between the two, specific NMR experiments can be used to measure the dynamics
+of individual atoms.
+</p>
+</div>
+
+<div id="outline-container-sec-7-2-1" class="outline-4">
+<h4 id="sec-7-2-1"><span class="section-number-4">7.2.1</span> Pros and Cons</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<p>
+<b>Difficulties</b>
+</p>
+<ul class="org-ul">
+<li>protein in solution: protein has to be soluble
+</li>
+<li>insensitive method: requires high concentrations of proteins
+</li>
+<li>direct determination of 3D structures for small proteins only
+(up to 50-60 kD)
+</li>
+</ul>
+
+
+<p>
+<b>Advantages</b>
+</p>
+<ul class="org-ul">
+<li>protein in solution: no crystal packing artefacts, allows direct
+</li>
+</ul>
+<p>
+binding experiments, hydrodynamic and folding studies
+</p>
+<ul class="org-ul">
+<li>assignment of mobile regions (loops) possible: no gaps in
+</li>
+</ul>
+<p>
+structure
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Cry-electron microscopy</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+Electron microscopy, frequently referred to as 3DEM, is also used to determine 3D structures
+of large macromolecular assemblies. A beam of electrons and a system of electron lenses is
+used to image the biomolecule directly. Several tricks are required to obtain a 3D structure
+from 2D projection images produced by transmission electron microscopes. The most commonly
+used technique today involves imaging of many thousands of different single particles
+preserved in a thin layer of non-crystalline ice (cryo-EM). Provided these views show the
+molecule in myriad different orientations, a computational approach akin to that used for
+computerized axial tomography or CAT scans in medicine will yield a 3D mass density map. With
+a sufficient number of single particles, the 3DEM maps can then be interpreted by fitting an
+atomic model of the macromolecule into the map, just as macromolecular crystallographers
+interpret their electron density maps.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Database</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+A database is an organized collection of data, generally stored and accessed electronically from a computer system.
+</p>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Francesco Codice&rsquo; - Lectures of professor Turina</p>
+<p class="date">Created: 2021-02-24 Wed 15:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1.90 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

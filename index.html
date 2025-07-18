@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perestrojka Fest 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=D-DIN+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'D-DIN Condensed', sans-serif;
+      background: url('Sfondo-01.svg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    header img {
+      max-width: 90%;
+      height: auto;
+      margin-top: 2rem;
+    }
+
+    .subtitle {
+      font-weight: bold;
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    .dates {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .location {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      border-radius: 1rem;
+      max-width: 90%;
+      font-size: 1.2rem;
+      line-height: 2;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    footer img {
+      margin-top: 3rem;
+      max-width: 150px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+    }
+
+    .overlay:target {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .subtitle {
+        font-size: 1.5rem;
+      }
+
+      .dates, .location {
+        font-size: 1rem;
+      }
+
+      nav {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Titolo-01.svg" alt="Perestrojka Fest 2025" />
+    <div class="subtitle">TERRE RIBELLI</div>
+    <div class="dates">21 / 22 / 23 AGOSTO</div>
+    <div class="location">PIAZZOLA - CASTELLO DELL’ACQUA (SO)</div>
+  </header>
+
+  <nav>
+    <a onclick="showOverlay('musica.jpg')">MUSICA - FREE CAMPING - ARTE - STAND - CULTURA</a>
+    <a onclick="showOverlay('ingresso.jpg')">INGRESSO LIBERO</a>
+    <a onclick="showOverlay('bar.jpg')">BAR E CUCINA TUTTI I GIORNI (PRANZO E CENA)</a>
+  </nav>
+
+  <footer>
+    <img src="logo-perestrojka.png" alt="Logo Perestrojka" />
+  </footer>
+
+  <div id="overlay" class="overlay" onclick="hideOverlay()">
+    <span class="close-btn">&times;</span>
+    <img id="overlay-img" src="" alt="immagine" />
+  </div>
+
+  <script>
+    function showOverlay(imgFile) {
+      document.getElementById('overlay-img').src = imgFile;
+      document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function hideOverlay() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('overlay-img').src = '';
+    }
+  </script>
+</body>
+</html>
